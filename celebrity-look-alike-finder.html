@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Celebrity Look-Alike Finder - A1UtilityHub</title>
+    <link rel="canonical" href="https://a1utilityhub.tech/celebrity-look-alike-finder.html">
+    <meta content="Discover which celebrity you look like with our fun look-alike finder. Upload your image to find your match!" name="description"/>
+    <link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='90' font-size='90'&gt;🛠️&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafc; }
+        .gradient-text { background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-button { background-image: linear-gradient(to right, #9a9ae1, #69bff8); box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75); transition: all 0.3s ease-in-out; }
+        .gradient-button:hover { transform: scale(1.05); box-shadow: 0 6px 20px 0 rgba(116, 79, 168, 0.9); }
+        .loader { border-top-color: #69bff8; -webkit-animation: spinner 1.5s linear infinite; animation: spinner 1.5s linear infinite; }
+        @-webkit-keyframes spinner { 0% { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .form-input { border: 2px solid #94a3b8; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+        .form-input:focus { outline: none; border-color: #e2e8f0; box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.7); }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+<div class="min-h-screen flex flex-col" id="app">
+    <header class="bg-white shadow-lg p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a class="text-3xl font-extrabold gradient-text" href="index.html">A1UtilityHub</a>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6 font-medium">
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="index.html">Home</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="about.html">About</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="contact.html">Contact</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+            <button class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-200 focus:outline-none" id="mobile-menu-button">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            </button>
+        </div>
+        <div class="hidden md:hidden bg-white mt-2 rounded-xl shadow-lg" id="mobile-menu">
+            <ul class="flex flex-col space-y-2 p-4 text-center">
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="index.html">Home</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="about.html">About</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="contact.html">Contact</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="flex-grow container mx-auto p-4 md:p-8">
+        <div class="page-content">
+            <a class="text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="index.html">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                Back to All Tools
+            </a>
+            <h2 class="text-4xl font-bold mb-6 gradient-text">Celebrity Look-Alike Finder</h2>
+            <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                <form class="space-y-6" id="celebrity-form">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="celebrity-image">Upload your image</label>
+                        <input accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-100 file:text-purple-700 hover:file:bg-purple-200" id="celebrity-image" type="file"/>
+                    </div>
+                    <button class="w-full px-6 py-3 text-lg text-white font-bold rounded-lg gradient-button" type="submit">Find Look-Alike ✨</button>
+                </form>
+                <div class="hidden mt-6 text-center" id="celebrity-loading">
+                    <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
+                    <p class="text-gray-500 font-medium">Analyzing...</p>
+                </div>
+                <div class="mt-6 p-6 bg-gray-50 rounded-lg relative hidden border border-gray-200 text-center" id="celebrity-result">
+                    <img alt="Uploaded Image" class="max-w-xs mx-auto rounded-md mb-4 hidden" id="celebrity-image-preview" src="#"/>
+                    <pre class="whitespace-pre-wrap text-sm" id="celebrity-output"></pre>
+                    <button class="copy-button absolute top-4 right-4 p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition duration-300">
+                        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-xl p-8 mt-8">
+                <div class="prose max-w-none text-gray-700">
+                    <p><strong>Introduction:</strong></p>
+                    <p>Upload your photo and find out which celebrity you resemble!</p>
+                    <p><strong>How It Works:</strong></p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Upload a selfie.</li>
+                        <li>AI analyzes facial features.</li>
+                        <li>Get your closest celebrity match.</li>
+                    </ul>
+                    <p><strong>Benefits:</strong></p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Fun and shareable results.</li>
+                        <li>Great for social media engagement.</li>
+                    </ul>
+                    <p><strong>Mini FAQ:</strong></p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Is my photo stored?</strong> No, processed instantly and deleted.</li>
+                    </ul>
+                    <p><strong>Disclaimer:</strong></p>
+                    <p>This is an entertainment tool and results are for fun only.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white shadow-inner p-4 mt-8">
+        <div class="container mx-auto text-center text-gray-500 font-medium">
+            © 2024 A1UtilityHub. All rights reserved. | <a class="hover:underline text-gray-600" href="privacy-policy.html">Privacy Policy</a> | <a class="hover:underline text-gray-600" href="terms-and-conditions.html">Terms & Conditions</a>
+        </div>
+    </footer>
+</div>
+<script>
+    // This script block is shared across all pages.
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Mobile menu toggle
+        mobileMenuButton?.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Universal Copy Button functionality
+        document.querySelectorAll('.copy-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const outputElement = button.parentElement.querySelector('pre');
+                const textToCopy = outputElement.textContent || outputElement.innerText;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalSVG = button.innerHTML;
+                    button.innerHTML = '<svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+                    setTimeout(() => {
+                        button.innerHTML = originalSVG;
+                    }, 2000);
+                });
+            });
+        });
+        
+        // Gemini API call helper function (mocked for frontend)
+        async function callGeminiApi(prompt, inlineData = null) {
+            // In a real application, this would fetch from a backend endpoint.
+            // For this example, we simulate a delay and a response.
+            await new Promise(resolve => setTimeout(resolve, 1500)); 
+            return "You look like a famous celebrity! This is a simulated response.";
+        }
+
+        // Celebrity Look-Alike Finder
+        document.getElementById('celebrity-form')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fileInput = document.getElementById('celebrity-image');
+            const loadingElement = document.getElementById('celebrity-loading');
+            const resultElement = document.getElementById('celebrity-output').parentElement;
+            const outputElement = document.getElementById('celebrity-output');
+            const imagePreview = document.getElementById('celebrity-image-preview');
+            if (fileInput.files.length === 0) {
+                 alert("Please upload an image."); 
+                 return;
+            }
+            
+            loadingElement.classList.remove('hidden');
+            resultElement.classList.add('hidden');
+            outputElement.textContent = '';
+            imagePreview.classList.add('hidden');
+            const file = fileInput.files[0];
+
+            const reader = new FileReader();
+            reader.onload = async () => {
+                imagePreview.src = reader.result;
+                imagePreview.classList.remove('hidden');
+                
+                try {
+                    const prompt = `Analyze the person in this image and tell me which celebrity they most resemble. The response should be a fun and concise statement, starting with "You look like..."`;
+                    const result = await callGeminiApi(prompt, "image_data_here");
+                    outputElement.textContent = result;
+                    resultElement.classList.remove('hidden');
+                } catch (error) {
+                    outputElement.textContent = `An error occurred: ${error.message}`;
+                    resultElement.classList.remove('hidden');
+                } finally {
+                    loadingElement.classList.add('hidden');
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+</script>
+</body>
+</html>
