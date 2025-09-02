@@ -1,1151 +1,318 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>A1UtilityHub</title>
-<link rel="canonical" href="https://a1utilityhub.tech/">
-<meta content="A collection of fun and useful AI and utility tools, including prompt generation, text rewriting, and a tax calculator." name="description"/>
-<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='90' font-size='90'&gt;🛠️&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>A1UtilityHub</title>
+    <link rel="canonical" href="https://a1utilityhub.tech/">
+    <meta content="A collection of fun and useful AI and utility tools, including prompt generation, text rewriting, and a tax calculator." name="description"/>
+    <link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='90' font-size='90'&gt;🛠️&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7fafc;
-        }
-        .gradient-text {l;
-            background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .gradient-button {
-            background-image: linear-gradient(to right, #9a9ae1, #69bff8);
-            box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
-            transition: all 0.3s ease-in-out;
-        }
-        .gradient-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px 0 rgba(116, 79, 168, 0.9);
-        }
-        .loader {
-            border-top-color: #69bff8;
-            -webkit-animation: spinner 1.5s linear infinite;
-            animation: spinner 1.5s linear infinite;
-        }
-        @-webkit-keyframes spinner {
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); }
-        }
-        @keyframes spinner {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        /* New styles for improved form input visibility */
-        .form-input {
-            border: 2px solid #94a3b8; /* Bolder default border color */
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-        .form-input:focus {
-            outline: none;
-            border-color: #e2e8f0; /* Soft white border on focus */
-            box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.7); /* Bold purple ring on focus */
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafc; }
+        .gradient-text { background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-button { background-image: linear-gradient(to right, #9a9ae1, #69bff8); box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75); transition: all 0.3s ease-in-out; }
+        .gradient-button:hover { transform: scale(1.05); box-shadow: 0 6px 20px 0 rgba(116, 79, 168, 0.9); }
+        .loader { border-top-color: #69bff8; -webkit-animation: spinner 1.5s linear infinite; animation: spinner 1.5s linear infinite; }
+        @-webkit-keyframes spinner { 0% { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .form-input { border: 2px solid #94a3b8; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+        .form-input:focus { outline: none; border-color: #e2e8f0; box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.7); }
     </style>
-
-<meta content="Free Online Fun &amp; Utility Tools - AI Powered" name="title"/>
-<meta content="Try 7 free online tools: AI Prompt Generator, Instagram Bio &amp; Username Generator, Text Rewriter, Salary Tax Calculator, Time Zone Converter, Love Calculator, and Celebrity Look-Alike Finder." name="description"/>
-<meta content="AI tools, Instagram bio generator, text rewriter, salary calculator India, time zone converter, love calculator, celebrity look alike finder, free online tools" name="keywords"/>
-<meta content="index, follow" name="robots"/>
-<meta content="YourBrand" name="author"/>
-<link href="https://a1utilityhub.tech/" rel="canonical"/>
-<link href="assets/img/favicon.ico" rel="icon" type="image/x-icon"/>
+    <meta content="Free Online Fun & Utility Tools - AI Powered" name="title"/>
+    <meta content="Try 7 free online tools: AI Prompt Generator, Instagram Bio & Username Generator, Text Rewriter, Salary Tax Calculator, Time Zone Converter, Love Calculator, and Celebrity Look-Alike Finder." name="description"/>
+    <meta content="AI tools, Instagram bio generator, text rewriter, salary calculator India, time zone converter, love calculator, celebrity look alike finder, free online tools" name="keywords"/>
+    <meta content="index, follow" name="robots"/>
+    <meta content="YourBrand" name="author"/>
+    <link href="https://a1utilityhub.tech/" rel="canonical"/>
+    <link href="assets/img/favicon.ico" rel="icon" type="image/x-icon"/>
 </head>
 <body class="bg-gray-100 text-gray-800">
 <div class="min-h-screen flex flex-col" id="app">
-<header class="bg-white shadow-lg p-4 sticky top-0 z-50">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-3xl font-extrabold gradient-text" href="/home" class="nav-link" id="home-link">A1UtilityHub</a>
-<nav class="hidden md:block">
-<ul class="flex space-x-6 font-medium">
-<li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="/home" class="nav-link" id="nav-home">Home</a></li>
-<li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="/about" class="nav-link" id="nav-about">About</a></li>
-<li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="/contact" class="nav-link" id="nav-contact">Contact</a></li>
-<li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="/blog" class="nav-link" id="nav-blog">Blog</a></li>
-</ul>
-</nav>
-<button class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-200 focus:outline-none" id="mobile-menu-button">
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
-<div class="hidden md:hidden bg-white mt-2 rounded-xl shadow-lg" id="mobile-menu">
-<ul class="flex flex-col space-y-2 p-4 text-center">
-<li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="/home" class="nav-link">Home</a></li>
-<li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="/about" class="nav-link">About</a></li>
-<li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="/contact" class="nav-link">Contact</a></li>
-<li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="/blog" class="nav-link">Blog</a></li>
-</ul>
-</div>
-</header>
-<main class="flex-grow container mx-auto p-4 md:p-8">
-<div class="page-content" id="home-page">
-<section class="text-center py-16 md:py-24">
-<h1 class="text-4xl md:text-6xl font-extrabold mb-4 gradient-text">Your AI &amp; Fun Utility Hub</h1>
-<p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">A collection of smart tools designed to help you with your creative, social, and daily tasks.</p>
-<a class="px-8 py-4 text-lg rounded-full text-white font-bold inline-block gradient-button" href="/ai-prompt-generator" class="nav-link">Explore All Tools</a>
-</section>
-<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-<a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="/ai-prompt-generator" class="nav-link">
-<div class="text-5xl mb-4 text-purple-500 group-hover:text-purple-600 transition duration-300">💡</div>
-<h3 class="text-xl font-bold mb-2">AI Prompt Generator</h3>
-<p class="text-gray-600 text-sm">Generate creative and effective prompts for various AI models.</p>
-</a>
-<a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="/instagram-bio-generator" class="nav-link">
-<div class="text-5xl mb-4 text-pink-500 group-hover:text-pink-600 transition duration-300">📱</div>
-<h3 class="text-xl font-bold mb-2">Instagram Bio/Username</h3>
-<p class="text-gray-600 text-sm">Find the perfect bio or a catchy username for your Instagram profile.</p>
-</a>
-<a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="/text-rewriter" class="nav-link">
-<div class="text-5xl mb-4 text-blue-500 group-hover:text-blue-600 transition duration-300">✍️</div>
-<h3 class="text-xl font-bold mb-2">Text Rewriter</h3>
-<p class="text-gray-600 text-sm">Rewrite sentences or paragraphs in a different style or tone.</p>
-</a>
-<a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="/salary-tax-calculator" class="nav-link">
-<div class="text-5xl mb-4 text-green-500 group-hover:text-green-600 transition duration-300">💰</div>
-<h3 class="text-xl font-bold mb-2">Salary Tax Calculator</h3>
-<p class="text-gray-600 text-sm">Calculate your income tax based on the latest Indian tax rules.</p>
-</a>
-<a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="/love-calculator" class="nav-link">
-<div class="text-5xl mb-4 text-red-500 group-hover:text-red-600 transition duration-300">❤️</div>
-<h3 class="text-xl font-bold mb-2">Love Calculator</h3>
-<p class="text-gray-600 text-sm">Find out your love compatibility with a fun, fictional calculator.</p>
-</a>
-<a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="/celebrity-look-alike-finder" class="nav-link">
-<div class="text-5xl mb-4 text-yellow-500 group-hover:text-yellow-600 transition duration-300">📸</div>
-<h3 class="text-xl font-bold mb-2">Celebrity Look-Alike</h3>
-<p class="text-gray-600 text-sm">Discover which celebrity you look like with this fun tool.</p>
-</a>
-</section>
-</div>
-<div class="page-content hidden" id="ai-prompt-generator-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<h2 class="text-4xl font-bold mb-6 gradient-text">AI Prompt Generator</h2>
-<div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
-<form class="space-y-6" id="ai-prompt-form">
-<div>
-<label class="block text-sm font-medium text-gray-700" for="ai-category">Category</label>
-<select class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="ai-category">
-<option value="writing">Writing</option>
-<option value="coding">Coding</option>
-<option value="art">Art</option>
-<option value="marketing">Marketing</option>
-</select>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-700" for="ai-topic">Topic</label>
-<input class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="ai-topic" placeholder="e.g., 'story about a robot'" type="text"/>
-</div>
-<button class="w-full px-6 py-3 text-lg text-white font-bold rounded-lg gradient-button" type="submit">Generate Prompt ✨</button>
-</form>
-<div class="hidden mt-6 text-center" id="ai-prompt-loading">
-<div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
-<p class="text-gray-500 font-medium">Generating...</p>
-</div>
-<div class="mt-6 p-6 bg-gray-50 rounded-lg relative hidden border border-gray-200" id="ai-prompt-result">
-<pre class="whitespace-pre-wrap text-sm" id="ai-prompt-output"></pre>
-<button class="copy-button absolute top-4 right-4 p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition duration-300">
-<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
-</div>
-<div class="bg-white rounded-2xl shadow-xl p-8 mt-8">
-<div class="prose max-w-none text-gray-700">
-<p><strong>Introduction:</strong></p>
-<p>The AI Prompt Generator is your personal idea machine, designed to help you craft the perfect prompts for AI tools like ChatGPT, MidJourney, DALL·E, and more. Whether you’re a writer, marketer, student, or designer, this tool helps you overcome creative blocks.</p>
-<p><strong>How It Works:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Select your desired AI tool or topic category.</li>
-<li>Enter a brief description of what you want.</li>
-<li>Instantly receive high-quality prompts optimized for creativity and relevance.</li>
-</ul>
-<p><strong>Benefits:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Saves time by removing guesswork.</li>
-<li>Produces better AI outputs by providing specific, tailored prompts.</li>
-<li>Helps beginners and professionals alike.</li>
-</ul>
-<p><strong>Mini FAQ:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li><strong>Is it free?</strong> Yes, fully free to use.</li>
-<li><strong>Can I use prompts commercially?</strong> Yes, unless the AI service you use has restrictions.</li>
-<li><strong>Do I need an account?</strong> No, use instantly without sign-up.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="page-content hidden" id="instagram-bio-generator-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<h2 class="text-4xl font-bold mb-6 gradient-text">Instagram Bio/Username Generator</h2>
-<div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
-<form class="space-y-6" id="instagram-form">
-<div>
-<label class="block text-sm font-medium text-gray-700" for="instagram-keywords">Keywords (e.g., 'travel, photography')</label>
-<input class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="instagram-keywords" type="text"/>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-700" for="instagram-type">Type</label>
-<select class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="instagram-type">
-<option value="bio">Bio</option>
-<option value="username">Username</option>
-</select>
-</div>
-<button class="w-full px-6 py-3 text-lg text-white font-bold rounded-lg gradient-button" type="submit">Generate ✨</button>
-</form>
-<div class="hidden mt-6 text-center" id="instagram-loading">
-<div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
-<p class="text-gray-500 font-medium">Generating...</p>
-</div>
-<div class="mt-6 p-6 bg-gray-50 rounded-lg relative hidden border border-gray-200" id="instagram-result">
-<pre class="whitespace-pre-wrap text-sm" id="instagram-output"></pre>
-<button class="copy-button absolute top-4 right-4 p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition duration-300">
-<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
-</div>
-<div class="bg-white rounded-2xl shadow-xl p-8 mt-8">
-<div class="prose max-w-none text-gray-700">
-<p><strong>Introduction:</strong></p>
-<p>Stand out on Instagram with unique bios and usernames that reflect your personality, brand, or niche.</p>
-<p><strong>How It Works:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Choose a theme or keyword.</li>
-<li>Get instant suggestions.</li>
-<li>Copy and paste into your Instagram profile.</li>
-</ul>
-<p><strong>Benefits:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Perfect for influencers, brands, or anyone wanting a fresh profile look.</li>
-<li>Generates creative and memorable names.</li>
-<li>Can also inspire hashtags and captions.</li>
-</ul>
-<p><strong>Mini FAQ:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li><strong>Will these usernames be available?</strong> Suggestions are unique but may need checking for availability.</li>
-<li><strong>Do I have to credit A1UtilityHub?</strong> No, but we’d appreciate it!</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="page-content hidden" id="text-rewriter-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<h2 class="text-4xl font-bold mb-6 gradient-text">Text Rewriter Tool</h2>
-<div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
-<form class="space-y-6" id="text-rewriter-form">
-<div>
-<label class="block text-sm font-medium text-gray-700" for="rewriter-text">Text to Rewrite</label>
-<textarea class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="rewriter-text" placeholder="Enter text here..." rows="5"></textarea>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-700" for="rewriter-style">Style</label>
-<select class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="rewriter-style">
-<option value="formal">Formal</option>
-<option value="casual">Casual</option>
-<option value="creative">Creative</option>
-</select>
-</div>
-<button class="w-full px-6 py-3 text-lg text-white font-bold rounded-lg gradient-button" type="submit">Rewrite Text ✨</button>
-</form>
-<div class="hidden mt-6 text-center" id="text-rewriter-loading">
-<div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
-<p class="text-gray-500 font-medium">Rewriting...</p>
-</div>
-<div class="mt-6 p-6 bg-gray-50 rounded-lg relative hidden border border-gray-200" id="text-rewriter-result">
-<pre class="whitespace-pre-wrap text-sm" id="text-rewriter-output"></pre>
-<button class="copy-button absolute top-4 right-4 p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition duration-300">
-<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
-</div>
-<div class="bg-white rounded-2xl shadow-xl p-8 mt-8">
-<div class="prose max-w-none text-gray-700">
-<p><strong>Introduction:</strong></p>
-<p>Our Text Rewriter helps you paraphrase, restructure, and refresh any block of text for blogs, essays, or emails.</p>
-<p><strong>How It Works:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Paste your text.</li>
-<li>Choose rewriting style (formal, casual, creative).</li>
-<li>Get a rephrased version instantly.</li>
-</ul>
-<p><strong>Benefits:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Avoids plagiarism issues.</li>
-<li>Improves clarity and tone.</li>
-<li>Saves editing time.</li>
-</ul>
-<p><strong>Mini FAQ:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li><strong>Is it AI-based?</strong> Yes, powered by advanced language models.</li>
-<li><strong>Can it rewrite in other languages?</strong> Yes, multi-language support is available.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="page-content hidden" id="salary-tax-calculator-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<h2 class="text-4xl font-bold mb-6 gradient-text">Indian Salary Tax Calculator</h2>
-<div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
-<form class="space-y-6" id="tax-calculator-form">
-<div>
-<label class="block text-sm font-medium text-gray-700" for="tax-salary">Gross Annual Salary (₹)</label>
-<input class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="tax-salary" required="" type="number"/>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-700" for="tax-regime">Tax Regime</label>
-<select class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="tax-regime">
-<option value="new">New Regime (Default)</option>
-<option value="old">Old Regime</option>
-</select>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-700" for="tax-deductions">Deductions (Old Regime only) (₹)</label>
-<input class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" disabled="" id="tax-deductions" type="number" value="0"/>
-</div>
-<button class="w-full px-6 py-3 text-lg text-white font-bold rounded-lg gradient-button" type="submit">Calculate Tax</button>
-</form>
-<div class="hidden mt-6 text-center" id="tax-calculator-loading">
-<div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
-<p class="text-gray-500 font-medium">Calculating...</p>
-</div>
-<div class="mt-6 p-6 bg-gray-50 rounded-lg relative hidden border border-gray-200" id="tax-calculator-result">
-<pre class="whitespace-pre-wrap text-sm" id="tax-calculator-output"></pre>
-<button class="copy-button absolute top-4 right-4 p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition duration-300">
-<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
-</div>
-<div class="bg-white rounded-2xl shadow-xl p-8 mt-8">
-<div class="prose max-w-none text-gray-700">
-<p><strong>Introduction:</strong></p>
-<p>Quickly calculate your salary’s tax deductions under Indian tax laws for accurate take-home estimates.</p>
-<p><strong>How It Works:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Enter your annual salary.</li>
-<li>Select your age group and tax regime.</li>
-<li>Instantly see deductions and net salary.</li>
-</ul>
-<p><strong>Benefits:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Saves time compared to manual tax calculation.</li>
-<li>Helps in financial planning.</li>
-<li>Always up-to-date with latest tax slabs.</li>
-</ul>
-<p><strong>Mini FAQ:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li><strong>Is it accurate?</strong> Yes, based on official Indian tax guidelines.</li>
-<li><strong>Can I use it for filing returns?</strong> It’s a reference tool; consult a CA for official filing.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="page-content hidden" id="love-calculator-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<h2 class="text-4xl font-bold mb-6 gradient-text">Love Calculator ❤️</h2>
-<div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
-<form class="space-y-6" id="love-calculator-form">
-<div>
-<label class="block text-sm font-medium text-gray-700" for="love-name1">Your Name</label>
-<input class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="love-name1" required="" type="text"/>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-700" for="love-name2">Partner's Name</label>
-<input class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="love-name2" required="" type="text"/>
-</div>
-<button class="w-full px-6 py-3 text-lg text-white font-bold rounded-lg gradient-button" type="submit">Calculate Love</button>
-</form>
-<div class="hidden mt-6 text-center" id="love-calculator-loading">
-<div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
-<p class="text-gray-500 font-medium">Calculating...</p>
-</div>
-<div class="mt-6 p-6 bg-gray-50 rounded-lg relative hidden border border-gray-200 text-center" id="love-calculator-result">
-<pre class="whitespace-pre-wrap text-sm" id="love-calculator-output"></pre>
-<button class="copy-button absolute top-4 right-4 p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition duration-300">
-<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
-</div>
-<div class="bg-white rounded-2xl shadow-xl p-8 mt-8">
-<div class="prose max-w-none text-gray-700">
-<p><strong>Introduction:</strong></p>
-<p>Fun and flirty, the Love Calculator estimates your compatibility based on names.</p>
-<p><strong>How It Works:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Enter two names.</li>
-<li>See a percentage compatibility score.</li>
-</ul>
-<p><strong>Benefits:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Great for parties or ice-breakers.</li>
-<li>Adds humor and fun to your day.</li>
-</ul>
-<p><strong>Mini FAQ:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li><strong>Is it accurate?</strong> No, purely for fun.</li>
-<li><strong>Can I take it seriously?</strong> Please don’t — it’s just entertainment.</li>
-</ul>
-<p><strong>Disclaimer:</strong></p>
-<p>This tool is for entertainment purposes only and has no scientific basis.</p>
-</div>
-</div>
-</div>
-<div class="page-content hidden" id="celebrity-look-alike-finder-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<h2 class="text-4xl font-bold mb-6 gradient-text">Celebrity Look-Alike Finder</h2>
-<div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
-<form class="space-y-6" id="celebrity-form">
-<div>
-<label class="block text-sm font-medium text-gray-700" for="celebrity-image">Upload your image</label>
-<input accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-100 file:text-purple-700 hover:file:bg-purple-200" id="celebrity-image" type="file"/>
-</div>
-<button class="w-full px-6 py-3 text-lg text-white font-bold rounded-lg gradient-button" type="submit">Find Look-Alike ✨</button>
-</form>
-<div class="hidden mt-6 text-center" id="celebrity-loading">
-<div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
-<p class="text-gray-500 font-medium">Analyzing...</p>
-</div>
-<div class="mt-6 p-6 bg-gray-50 rounded-lg relative hidden border border-gray-200 text-center" id="celebrity-result">
-<img alt="Uploaded Image" class="max-w-xs mx-auto rounded-md mb-4 hidden" id="celebrity-image-preview" src="#"/>
-<pre class="whitespace-pre-wrap text-sm" id="celebrity-output"></pre>
-<button class="copy-button absolute top-4 right-4 p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition duration-300">
-<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
-</div>
-<div class="bg-white rounded-2xl shadow-xl p-8 mt-8">
-<div class="prose max-w-none text-gray-700">
-<p><strong>Introduction:</strong></p>
-<p>Upload your photo and find out which celebrity you resemble!</p>
-<p><strong>How It Works:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Upload a selfie.</li>
-<li>AI analyzes facial features.</li>
-<li>Get your closest celebrity match.</li>
-</ul>
-<p><strong>Benefits:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li>Fun and shareable results.</li>
-<li>Great for social media engagement.</li>
-</ul>
-<p><strong>Mini FAQ:</strong></p>
-<ul class="list-disc list-inside space-y-2">
-<li><strong>Is my photo stored?</strong> No, processed instantly and deleted.</li>
-</ul>
-<p><strong>Disclaimer:</strong></p>
-<p>This is an entertainment tool and results are for fun only.</p>
-</div>
-</div>
-</div>
-<div class="page-content hidden" id="blog-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<h2 class="text-4xl font-bold mb-8 text-center gradient-text">Our Blog</h2>
-<section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<a class="blog-card-link p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="/blog-1" class="nav-link">
-<h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-purple-600">10 Best AI Prompt Ideas to Boost Creativity in 2025</h3>
-<p class="text-gray-600 text-sm mb-4">In 2025, artificial intelligence has become a secret creative partner for millions... </p>
-<span class="font-bold text-purple-500">Read More →</span>
-</a>
-<a class="blog-card-link p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="/blog-2" class="nav-link">
-<h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-purple-600">Top 20 Instagram Bio Ideas for 2025 That Will Get You Noticed</h3>
-<p class="text-gray-600 text-sm mb-4">Your Instagram bio is like your digital handshake — it’s the first thing people see...</p>
-<span class="font-bold text-purple-500">Read More →</span>
-</a>
-<a class="blog-card-link p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="/blog-3" class="nav-link">
-<h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-purple-600">Ultimate Guide to Rewriting Text Without Losing Meaning</h3>
-<p class="text-gray-600 text-sm mb-4">Rewriting text is more than just swapping words for synonyms. A well-rewritten piece...</p>
-<span class="font-bold text-purple-500">Read More →</span>
-</a>
-<a class="blog-card-link p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="/blog-4" class="nav-link">
-<h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-purple-600">How to Calculate Salary Tax in India (2025 Guide)</h3>
-<p class="text-gray-600 text-sm mb-4">Taxes — we may not love them, but we can’t avoid them. In India, understanding your salary tax...</p>
-<span class="font-bold text-purple-500">Read More →</span>
-</a>
-</section>
-</div>
-<div class="page-content hidden" id="blog-1-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-<article class="max-w-none text-gray-700">
-<h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">10 Best AI Prompt Ideas to Boost Creativity in 2025</h2>
-<p class="text-sm text-gray-500 mb-8">By A1UtilityHub – autilityhub@gmail.com</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Introduction</h3>
-<p class="mb-6">In 2025, artificial intelligence has become a secret creative partner for millions of people. Whether you’re a writer, designer, student, or marketer, AI tools can help you think outside the box. But here’s the catch — the AI is only as creative as the prompts you feed it. The better your prompt, the more surprising and useful your results.</p>
-<p class="mb-6">At A1UtilityHub, our AI Prompt Generator was built to give you fresh, unique, and fun ideas instantly. But to get you started, here are 10 AI prompt ideas that will unlock your imagination.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">1. “Describe a new holiday the world has never celebrated before.”</h3>
-<p class="mb-6">This kind of prompt pushes AI to combine cultural elements, history, and creativity into something unexpected. You might end up with “International Day of Forgotten Socks” or “Glow-in-the-Dark Peace Festival.”</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">2. “Write a short bedtime story about a time-traveling sandwich.”</h3>
-<p class="mb-6">Absurd prompts can lead to surprisingly fun narratives. Great for children’s content or quirky marketing campaigns.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">3. “Create a motivational speech as if delivered by a tree.”</h3>
-<p class="mb-6">Role-play prompts make AI think differently. You’ll get unique perspectives that are perfect for social media posts.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">4. “Suggest 5 Instagram captions for a rainy-day coffee photo.”</h3>
-<p class="mb-6">Short, actionable prompts like this can instantly help with your social media content strategy.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">5. “Explain blockchain technology to a 7-year-old.”</h3>
-<p class="mb-6">Simplifying complex concepts is a great way to make content more engaging and approachable.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">6. “Invent a futuristic gadget and describe its features.”</h3>
-<p class="mb-6">Perfect for sci-fi writers, startup idea brainstorms, or product design inspiration.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">7. “Give me 3 unique ice cream flavors no one has tried before.”</h3>
-<p class="mb-6">A fun and practical prompt that blends creativity with real-world business ideas.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">8. “Write a poem in the style of Shakespeare, but about gaming.”</h3>
-<p class="mb-6">Mixing genres forces AI to break the mold and generate unexpected results.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">9. “List 10 business ideas for people who only work at night.”</h3>
-<p class="mb-6">Niche-specific prompts often produce ideas that feel tailored and fresh.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">10. “Imagine a conversation between Albert Einstein and a cat.”</h3>
-<p class="mb-6">Perfect for humorous or philosophical content — AI thrives on unusual pairings.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Why Use the A1UtilityHub AI Prompt Generator?</h3>
-<p class="mb-6">While you can come up with prompts yourself, our AI Prompt Generator removes the guesswork. Simply enter your topic or goal, and we’ll instantly generate creative, ready-to-use prompts tailored for your needs.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Benefits:</h3>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li>Saves hours of brainstorming time</li>
-<li>Works for writers, designers, marketers, and students</li>
-<li>Generates prompts in any niche or style</li>
-</ul>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Mini FAQ</h3>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li><strong>Q1: Can I use AI prompts for business content?</strong><br/>Yes! Businesses use AI prompts for blog topics, ad copy, and product ideas.</li>
-<li><strong>Q2: Do I need to be a tech expert to use it?</strong><br/>Not at all. If you can type a sentence, you can use AI prompts.</li>
-<li><strong>Q3: Are prompts reusable?</strong><br/>Yes, but AI can produce new results each time from the same prompt.</li>
-</ul>
-<hr class="my-12"/>
-<h3 class="text-2xl font-bold text-center mb-6 text-gray-800">Continue Reading</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-2" class="nav-link">Top 20 Instagram Bio Ideas for 2025</a>
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-3" class="nav-link">Ultimate Guide to Rewriting Text</a>
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-4" class="nav-link">How to Calculate Salary Tax in India (2025)</a>
-</div>
-</article>
-</div>
-</div>
-<div class="page-content hidden" id="blog-2-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-<article class="max-w-none text-gray-700">
-<h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Top 20 Instagram Bio Ideas for 2025 That Will Get You Noticed</h2>
-<p class="text-sm text-gray-500 mb-8">By A1UtilityHub – autilityhub@gmail.com</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Introduction</h3>
-<p class="mb-6">Your Instagram bio is like your digital handshake — it’s the first thing people see when they land on your profile. In just 150 characters, you need to show your personality, your purpose, and why someone should follow you.</p>
-<p class="mb-6">In 2025, Instagram bios aren’t just about cute emojis and hashtags; they’re about building your brand and creating a connection. That’s why our Instagram Bio Generator at A1UtilityHub is designed to give you unique, fresh, and scroll-stopping bio ideas instantly.</p>
-<p class="mb-6">Here are 20 bio ideas to inspire you, whether you’re an influencer, entrepreneur, traveler, or just someone who loves sharing moments.</p>
-<ol class="list-decimal list-inside space-y-4 mb-6">
-<li>“✨ Turning coffee into content since 2020.” <span class="text-gray-500 italic block text-sm">Perfect for creators who love a fun, relatable vibe.</span></li>
-<li>“📍 On Earth… for now.” <span class="text-gray-500 italic block text-sm">A mysterious and intriguing bio that sparks curiosity.</span></li>
-<li>“💼 Building dreams, one pixel at a time.” <span class="text-gray-500 italic block text-sm">Great for designers, developers, and entrepreneurs.</span></li>
-<li>“☕ Coffee first. World domination second.” <span class="text-gray-500 italic block text-sm">For caffeine lovers with ambition.</span></li>
-<li>“🌍 Traveling through life with Wi-Fi and wonder.” <span class="text-gray-500 italic block text-sm">Perfect for travel influencers and digital nomads.</span></li>
-<li>“🧠 Deep thoughts, bad puns.” <span class="text-gray-500 italic block text-sm">A quirky mix of humor and intellect.</span></li>
-<li>“📸 Capturing chaos beautifully.” <span class="text-gray-500 italic block text-sm">For photographers who thrive on candid moments.</span></li>
-<li>“🐾 Dog hair is my glitter.” <span class="text-gray-500 italic block text-sm">For pet lovers with a sense of humor.</span></li>
-<li>“🚀 Chasing ideas at light speed.” <span class="text-gray-500 italic block text-sm">Great for innovators and dreamers.</span></li>
-<li>“📝 Stories in my heart, coffee in my hand.” <span class="text-gray-500 italic block text-sm">For writers and storytellers.</span></li>
-<li>“💖 Spreading kindness like confetti.” <span class="text-gray-500 italic block text-sm">Ideal for lifestyle and positivity-focused accounts.</span></li>
-<li>“🛠 Fixing life one bio at a time.” <span class="text-gray-500 italic block text-sm">Perfect for humor accounts or meme pages.</span></li>
-<li>“🎯 Focused on goals, fueled by tacos.” <span class="text-gray-500 italic block text-sm">Because who doesn’t love tacos?</span></li>
-<li>“🎨 Living in color, thinking in pixels.” <span class="text-gray-500 italic block text-sm">Great for artists and digital creators.</span></li>
-<li>“📦 Minimalist, except for my online shopping cart.” <span class="text-gray-500 italic block text-sm">Relatable and witty for a minimalist audience.</span></li>
-<li>“🌙 Dreaming wide awake.” <span class="text-gray-500 italic block text-sm">A poetic bio for creatives.</span></li>
-<li>“🛫 Passport: Always ready.” <span class="text-gray-500 italic block text-sm">For those bitten by the travel bug.</span></li>
-<li>“🤖 Just a human with Wi-Fi.” <span class="text-gray-500 italic block text-sm">Fun and tech-friendly.</span></li>
-<li>“🔥 Energy unmatched.” <span class="text-gray-500 italic block text-sm">Short, bold, and confident.</span></li>
-<li>“📚 Living between the lines.” <span class="text-gray-500 italic block text-sm">For book lovers and thinkers.</span></li>
-</ol>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Why Use the A1UtilityHub Instagram Bio Generator?</h3>
-<p class="mb-6">Sure, you can think of bios yourself — but why stress when our tool can give you dozens of ready-to-use options instantly?</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Benefits:</h3>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li>Saves time when brainstorming</li>
-<li>Tailored bios for different niches</li>
-<li>Adds creativity and personality to your profile</li>
-</ul>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Mini FAQ</h3>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li><strong>Q1: Can I customize the bio ideas from your tool?</strong><br/>Absolutely! They’re meant to inspire — tweak them to match your style.</li>
-<li><strong>Q2: Will these bios help me get more followers?</strong><br/>A good bio can make people click “Follow,” but consistent, quality content is the real key.</li>
-<li><strong>Q3: Can businesses use your generator?</strong><br/>Yes, we also have bio ideas specifically for brands and entrepreneurs.</li>
-</ul>
-<hr class="my-12"/>
-<h3 class="text-2xl font-bold text-center mb-6 text-gray-800">Continue Reading</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-1" class="nav-link">10 Best AI Prompt Ideas for 2025</a>
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-3" class="nav-link">Ultimate Guide to Rewriting Text</a>
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-4" class="nav-link">How to Calculate Salary Tax in India (2025)</a>
-</div>
-</article>
-</div>
-</div>
-<div class="page-content hidden" id="blog-3-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-<article class="max-w-none text-gray-700">
-<h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Ultimate Guide to Rewriting Text Without Losing Meaning</h2>
-<p class="text-sm text-gray-500 mb-8">By A1UtilityHub – autilityhub@gmail.com</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Introduction</h3>
-<p class="mb-6">Rewriting text is more than just swapping words for synonyms. A well-rewritten piece keeps the original meaning intact while sounding fresh, unique, and human. Whether you’re creating content for your blog, social media, or marketing campaigns, the ability to rewrite effectively can save you time and boost your creativity.</p>
-<p class="mb-6">Our Text Rewriter Tool at A1UtilityHub is built to make this process quick, accurate, and natural — but first, let’s understand the art and science behind rewriting.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Why Rewriting Matters in 2025</h3>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li><strong>Avoid plagiarism:</strong> Google loves unique content.</li>
-<li><strong>Save time:</strong> Instead of writing from scratch, rewrite and polish.</li>
-<li><strong>Adapt tone:</strong> Change formal text into casual (or vice versa).</li>
-<li><strong>SEO benefits:</strong> Unique wording can improve search rankings.</li>
-</ul>
-<h3 class="text-xl font-bold text-purple-600 mb-3">6 Key Principles for Rewriting Without Losing Meaning</h3>
-<p class="mb-6"><strong>1. Understand the Core Message</strong><br/>Before rewriting, read the text fully. Ask yourself: What is the main point the author is trying to make? Never start replacing words blindly.</p>
-<p class="mb-6"><strong>2. Use Synonyms Wisely</strong><br/>Yes, you can swap big with large, but not always. Words carry connotations — “slim” and “skinny” both mean thin, but one feels positive and the other negative.</p>
-<p class="mb-6"><strong>3. Change Sentence Structure</strong><br/><em>Original:</em> The cat chased the mouse.<br/><em>Rewritten:</em> The mouse was chased by the cat.<br/><em>Or better:</em> In a quick dash, the cat went after the mouse.</p>
-<p class="mb-6"><strong>4. Break or Merge Sentences</strong><br/>Long sentences can be split for clarity, and short ones can be merged for flow.</p>
-<p class="mb-6"><strong>5. Adapt Tone for the Audience</strong><br/><em>For professionals:</em> “Our service increases productivity by 25%.”<br/><em>For casual readers:</em> “Get more done in less time—by a whole quarter!”</p>
-<p class="mb-6"><strong>6. Double-Check for Accuracy</strong><br/>A rewrite that changes meaning is no longer rewriting — it’s misinformation. Always fact-check your final draft.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Using the A1UtilityHub Text Rewriter Tool</h3>
-<p class="mb-6">Instead of spending hours rewriting manually, our AI-powered tool lets you:</p>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li>Paste any text and get a rewritten version instantly</li>
-<li>Choose from formal, casual, creative, or concise tones</li>
-<li>Keep meaning intact while improving readability</li>
-</ul>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Pro Tips for Rewriting Like a Pro</h3>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li>Read your rewrite aloud — if it sounds awkward, fix it.</li>
-<li>Avoid overusing fancy words; clarity is king.</li>
-<li>Mix short and long sentences for rhythm.</li>
-</ul>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Mini FAQ</h3>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li><strong>Q1: Will rewriting help with SEO?</strong><br/>Yes — unique wording can help your page stand out in search results.</li>
-<li><strong>Q2: Does your tool work for long articles?</strong><br/>Absolutely. You can paste up to 5,000 words at once.</li>
-<li><strong>Q3: Will my rewritten text sound robotic?</strong><br/>No — our tool is trained to mimic human tone.</li>
-</ul>
-<hr class="my-12"/>
-<h3 class="text-2xl font-bold text-center mb-6 text-gray-800">Continue Reading</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-1" class="nav-link">10 Best AI Prompt Ideas for 2025</a>
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-2" class="nav-link">Top 20 Instagram Bio Ideas for 2025</a>
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-4" class="nav-link">How to Calculate Salary Tax in India (2025)</a>
-</div>
-</article>
-</div>
-</div>
-<div class="page-content hidden" id="blog-4-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-<article class="max-w-none text-gray-700">
-<h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">How to Calculate Salary Tax in India (2025 Guide)</h2>
-<p class="text-sm text-gray-500 mb-8">By A1UtilityHub – autilityhub@gmail.com</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Introduction</h3>
-<p class="mb-6">Taxes — we may not love them, but we can’t avoid them. In India, understanding your salary tax is crucial if you want to plan your finances smartly, avoid penalties, and even save money through exemptions and deductions.</p>
-<p class="mb-6">In this guide, we’ll break down the 2025 salary tax structure, explain how to calculate it step-by-step, and show how the A1UtilityHub Salary Tax Calculator can do the math for you in seconds.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Step 1: Understanding Income Tax Slabs (2025)</h3>
-<p class="mb-6">For FY 2024-25 (AY 2025-26), India follows the new tax regime by default — but you can still opt for the old regime.</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">New Tax Regime Slabs</h3>
-<div class="overflow-x-auto mb-6">
-<table class="min-w-full bg-white border border-gray-300">
-<thead class="bg-gray-100">
-<tr>
-<th class="py-2 px-4 border-b">Annual Income (₹)</th>
-<th class="py-2 px-4 border-b">Tax Rate</th>
-</tr>
-</thead>
-<tbody>
-<tr><td class="py-2 px-4 border-b">Up to ₹3,00,000</td><td class="py-2 px-4 border-b">0%</td></tr>
-<tr><td class="py-2 px-4 border-b">₹3,00,001 – ₹6,00,000</td><td class="py-2 px-4 border-b">5%</td></tr>
-<tr><td class="py-2 px-4 border-b">₹6,00,001 – ₹9,00,000</td><td class="py-2 px-4 border-b">10%</td></tr>
-<tr><td class="py-2 px-4 border-b">₹9,00,001 – ₹12,00,000</td><td class="py-2 px-4 border-b">15%</td></tr>
-<tr><td class="py-2 px-4 border-b">₹12,00,001 – ₹15,00,000</td><td class="py-2 px-4 border-b">20%</td></tr>
-<tr><td class="py-2 px-4 border-b">Above ₹15,00,000</td><td class="py-2 px-4 border-b">30%</td></tr>
-</tbody>
-</table>
-</div>
-<p class="text-sm text-gray-500 mb-6 italic">(Note: Surcharge and cess apply as per rules)</p>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Step 2: Know Your Components of Salary</h3>
-<p class="mb-6">Your CTC (Cost to Company) is not the same as your taxable income. Break it down:</p>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li><strong>Basic Salary</strong> – Fully taxable</li>
-<li><strong>HRA (House Rent Allowance)</strong> – Partially exempt if you pay rent</li>
-<li><strong>Special Allowances</strong> – Fully taxable</li>
-<li><strong>Perquisites</strong> – Taxable as per valuation</li>
-<li><strong>Bonus/Incentives</strong> – Fully taxable</li>
-</ul>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Step 3: Apply Deductions (Old Regime)</h3>
-<p class="mb-6">If you choose the old regime, you can claim:</p>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li><strong>Section 80C</strong> – Investments like PPF, ELSS, LIC (up to ₹1.5 lakh)</li>
-<li><strong>Section 80D</strong> – Health insurance premiums</li>
-<li><strong>Section 24(b)</strong> – Home loan interest (up to ₹2 lakh)</li>
-</ul>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Step 4: Calculate Tax Manually (Example)</h3>
-<p class="mb-6">Let’s say your annual salary is ₹10,00,000 under the new regime:</p>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li>First ₹3,00,000 = 0% → ₹0 tax</li>
-<li>Next ₹3,00,000 = 5% → ₹15,000</li>
-<li>Next ₹3,00,000 = 10% → ₹30,000</li>
-<li>Remaining ₹1,00,000 = 15% → ₹15,000</li>
-<li><strong>Total Tax = ₹60,000 + 4% cess = ₹62,400</strong></li>
-</ul>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Step 5: Use the A1UtilityHub Salary Tax Calculator</h3>
-<p class="mb-6">Manual math is fine — but why waste time when you can:</p>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li>Enter annual salary</li>
-<li>Select new or old regime</li>
-<li>Get instant breakdown with cess</li>
-<li>See potential savings</li>
-</ul>
-<h3 class="text-xl font-bold text-purple-600 mb-3">Mini FAQ</h3>
-<ul class="list-disc list-inside space-y-2 mb-6">
-<li><strong>Q1: Is the new tax regime mandatory in 2025?</strong><br/>Yes, but you can opt out and choose the old regime at the start of the year.</li>
-<li><strong>Q2: Can I avoid paying tax if my income is ₹7,00,000?</strong><br/>Yes, due to rebate under Section 87A (if conditions apply).</li>
-<li><strong>Q3: Will A1UtilityHub’s calculator include HRA exemptions?</strong><br/>Yes — just enter your rent details.</li>
-</ul>
-<hr class="my-12"/>
-<h3 class="text-2xl font-bold text-center mb-6 text-gray-800">Continue Reading</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-1" class="nav-link">10 Best AI Prompt Ideas for 2025</a>
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-2" class="nav-link">Top 20 Instagram Bio Ideas for 2025</a>
-<a class="blog-nav-link block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="/blog-3" class="nav-link">Ultimate Guide to Rewriting Text</a>
-</div>
-</article>
-</div>
-</div>
-<div class="page-content hidden" id="about-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<h2 class="text-4xl font-bold mb-6 gradient-text">About Us</h2>
-<div class="bg-white rounded-2xl shadow-xl p-8">
-<p class="text-lg text-gray-700 leading-relaxed">
-                        Welcome to **A1UtilityHub**, your all-in-one hub for a variety of smart and entertaining utilities. Our mission is to provide you with a simple and intuitive platform where you can access useful AI-powered tools and fun generators for your daily needs. From helping you craft the perfect AI prompt to rewriting text and even calculating your taxes, we're here to make your digital tasks easier and more enjoyable.
-                    </p>
-</div>
-</div>
-<div class="page-content hidden" id="contact-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<h2 class="text-4xl font-bold mb-6 gradient-text">Contact Us</h2>
-<div class="bg-white rounded-2xl shadow-xl p-8">
-<div class="text-center text-lg text-gray-700 leading-relaxed">
-<p class="mb-4">We'd love to hear from you!</p>
-<p class="mb-4">For any questions, feedback, or support inquiries, please send us a message.</p>
-<p class="font-bold text-xl text-purple-600">autilityhub@gmail.com</p>
-</div>
-</div>
-</div>
-<div class="page-content hidden" id="privacy-policy-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<h2 class="text-4xl font-bold mb-6 gradient-text">Privacy Policy</h2>
-<div class="bg-white rounded-2xl shadow-xl p-8">
-<p class="mb-4 text-gray-700">Effective Date: 24/07/2025</p>
-<p class="mb-6 text-gray-700">A1UtilityHub values your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our website.</p>
-<h3 class="text-xl font-bold mb-3 text-gray-800">1. Information We Collect</h3>
-<p class="mb-4 text-gray-700">We may collect the following types of information:</p>
-<ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
-<li><strong>Personal Information:</strong> Information you voluntarily provide (such as name, email address) when contacting us or using certain features.</li>
-<li><strong>Non-Personal Information:</strong> Browser type, device details, pages visited, time spent, and general analytics data.</li>
-<li><strong>Cookies &amp; Tracking Technologies:</strong> We use cookies to improve user experience, remember preferences, and deliver relevant ads.</li>
-</ul>
-<h3 class="text-xl font-bold mb-3 text-gray-800">2. How We Use Your Information</h3>
-<p class="mb-4 text-gray-700">We use the information collected to:</p>
-<ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
-<li>Provide, maintain, and improve our tools and services</li>
-<li>Personalize your experience on the website</li>
-<li>Analyze usage for performance optimization</li>
-<li>Show relevant ads through Google AdSense and other partners</li>
-<li>Prevent fraudulent or abusive activity</li>
-</ul>
-<h3 class="text-xl font-bold mb-3 text-gray-800">3. Google AdSense &amp; Third-Party Advertising</h3>
-<p class="mb-4 text-gray-700">Our website uses Google AdSense. Google and its partners may use cookies to serve ads based on your prior visits.</p>
-<p class="mb-6 text-gray-700">You can opt out of personalized ads by visiting Google Ads Settings.</p>
-<h3 class="text-xl font-bold mb-3 text-gray-800">4. Third-Party Services</h3>
-<p class="mb-6 text-gray-700">We may use third-party tools (such as analytics providers or APIs) that collect information in accordance with their own privacy policies.</p>
-<h3 class="text-xl font-bold mb-3 text-gray-800">5. Data Security</h3>
-<p class="mb-6 text-gray-700">We take reasonable measures to protect your data from unauthorized access, alteration, or disclosure. However, no online service can guarantee 100% security.</p>
-<h3 class="text-xl font-bold mb-3 text-gray-800">6. Your Choices</h3>
-<ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
-<li>You can disable cookies in your browser settings.</li>
-<li>You can request deletion of your personal data by contacting us at: autilityhub@gmail.com.</li>
-</ul>
-<h3 class="text-xl font-bold mb-3 text-gray-800">7. Changes to This Policy</h3>
-<p class="mb-6 text-gray-700">We may update this Privacy Policy from time to time. Changes will be posted on this page with the updated date.</p>
-<h3 class="text-xl font-bold mb-3 text-gray-800">8. Contact Us</h3>
-<p class="text-gray-700">If you have questions about this Privacy Policy, contact us at:</p>
-<p class="font-bold text-xl text-purple-600">📧 autilityhub@gmail.com</p>
-</div>
-</div>
-<div class="page-content hidden" id="terms-and-conditions-page">
-<a class="back-button text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="/home" class="nav-link">
-<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    Back to All Tools
-                </a>
-<h2 class="text-4xl font-bold mb-6 gradient-text">Terms &amp; Conditions</h2>
-<div class="bg-white rounded-2xl shadow-xl p-8">
-<p class="mb-4 text-gray-700">Effective Date: 13 August 2025</p>
-<p class="mb-4 text-gray-700">Contact Email: autilityhub@gmail.com</p>
-<p class="mb-6 text-gray-700">Welcome to A1UtilityHub. By accessing or using our website, you agree to the following terms and conditions:</p>
-<h3 class="text-xl font-bold mb-3 text-gray-800">Use of Our Services</h3>
-<ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
-<li>A1UtilityHub provides free online tools for productivity, fun, and informational purposes.</li>
-<li>Some tools are “for entertainment purposes only” (e.g., Love Calculator, Celebrity Look-Alike Finder) and should not be taken as factual or professional advice.</li>
-</ul>
-<h3 class="text-xl font-bold mb-3 text-gray-800">User Responsibilities</h3>
-<ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
-<li>You agree to use our website only for lawful purposes.</li>
-<li>You will not attempt to hack, exploit, or misuse our tools.</li>
-</ul>
-<h3 class="text-xl font-bold mb-3 text-gray-800">Intellectual Property</h3>
-<ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
-<li>All content, design, and tool logic on A1UtilityHub are owned by us and may not be copied without permission.</li>
-</ul>
-<h3 class="text-xl font-bold mb-3 text-gray-800">Third-Party Links &amp; Services</h3>
-<ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
-<li>Some tools may use third-party APIs. We are not responsible for the data accuracy or policies of those services.</li>
-</ul>
-<h3 class="text-xl font-bold mb-3 text-gray-800">Limitation of Liability</h3>
-<ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
-<li>We are not liable for any losses, damages, or decisions made based on results from our tools.</li>
-</ul>
-<h3 class="text-xl font-bold mb-3 text-gray-800">Changes to Terms</h3>
-<ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
-<li>We may update these Terms &amp; Conditions without notice. Continued use of the site means you accept changes.</li>
-</ul>
-</div>
-</div>
-</main>
-<footer class="bg-white shadow-inner p-4 mt-8">
-<div class="container mx-auto text-center text-gray-500 font-medium">
-                © 2024 A1UtilityHub. All rights reserved. | <a class="hover:underline text-gray-600" href="/privacy-policy" class="nav-link" id="privacy-policy-link">Privacy Policy</a> | <a class="hover:underline text-gray-600" href="/terms-and-conditions" class="nav-link" id="terms-and-conditions-link">Terms &amp; Conditions</a>
-</div>
-</footer>
+    <header class="bg-white shadow-lg p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a class="text-3xl font-extrabold gradient-text" href="index.html">A1UtilityHub</a>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6 font-medium">
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="index.html">Home</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="about.html">About</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="contact.html">Contact</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+            <button class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-200 focus:outline-none" id="mobile-menu-button">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            </button>
+        </div>
+        <div class="hidden md:hidden bg-white mt-2 rounded-xl shadow-lg" id="mobile-menu">
+            <ul class="flex flex-col space-y-2 p-4 text-center">
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="index.html">Home</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="about.html">About</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="contact.html">Contact</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="flex-grow container mx-auto p-4 md:p-8">
+        <section class="text-center py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 gradient-text">Your AI & Fun Utility Hub</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">A collection of smart tools designed to help you with your creative, social, and daily tasks.</p>
+            <a class="px-8 py-4 text-lg rounded-full text-white font-bold inline-block gradient-button" href="ai-prompt-generator.html">Explore All Tools</a>
+        </section>
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="ai-prompt-generator.html">
+                <div class="text-5xl mb-4 text-purple-500 group-hover:text-purple-600 transition duration-300">💡</div>
+                <h3 class="text-xl font-bold mb-2">AI Prompt Generator</h3>
+                <p class="text-gray-600 text-sm">Generate creative and effective prompts for various AI models.</p>
+            </a>
+            <a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="instagram-bio-generator.html">
+                <div class="text-5xl mb-4 text-pink-500 group-hover:text-pink-600 transition duration-300">📱</div>
+                <h3 class="text-xl font-bold mb-2">Instagram Bio/Username</h3>
+                <p class="text-gray-600 text-sm">Find the perfect bio or a catchy username for your Instagram profile.</p>
+            </a>
+            <a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="text-rewriter.html">
+                <div class="text-5xl mb-4 text-blue-500 group-hover:text-blue-600 transition duration-300">✍️</div>
+                <h3 class="text-xl font-bold mb-2">Text Rewriter</h3>
+                <p class="text-gray-600 text-sm">Rewrite sentences or paragraphs in a different style or tone.</p>
+            </a>
+            <a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="salary-tax-calculator.html">
+                <div class="text-5xl mb-4 text-green-500 group-hover:text-green-600 transition duration-300">💰</div>
+                <h3 class="text-xl font-bold mb-2">Salary Tax Calculator</h3>
+                <p class="text-gray-600 text-sm">Calculate your income tax based on the latest Indian tax rules.</p>
+            </a>
+            <a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="love-calculator.html">
+                <div class="text-5xl mb-4 text-red-500 group-hover:text-red-600 transition duration-300">❤️</div>
+                <h3 class="text-xl font-bold mb-2">Love Calculator</h3>
+                <p class="text-gray-600 text-sm">Find out your love compatibility with a fun, fictional calculator.</p>
+            </a>
+            <a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="celebrity-look-alike-finder.html">
+                <div class="text-5xl mb-4 text-yellow-500 group-hover:text-yellow-600 transition duration-300">📸</div>
+                <h3 class="text-xl font-bold mb-2">Celebrity Look-Alike</h3>
+                <p class="text-gray-600 text-sm">Discover which celebrity you look like with this fun tool.</p>
+            </a>
+        </section>
+    </main>
+    <footer class="bg-white shadow-inner p-4 mt-8">
+        <div class="container mx-auto text-center text-gray-500 font-medium">
+            © 2024 A1UtilityHub. All rights reserved. | <a class="hover:underline text-gray-600" href="privacy-policy.html">Privacy Policy</a> | <a class="hover:underline text-gray-600" href="terms-and-conditions.html">Terms & Conditions</a>
+        </div>
+    </footer>
 </div>
 <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const pages = document.querySelectorAll('.page-content');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            function showPage(pageId) {
-                pages.forEach(page => page.classList.add('hidden'));
-                const pageToShow = document.getElementById(pageId);
-                if (pageToShow) {
-                    pageToShow.classList.remove('hidden');
-                    // Avoid changing hash for home page to keep URL clean
-                    if (pageId === 'home-page') {
-                        history.pushState("", document.title, window.location.pathname + window.location.search);
-                    } else {
-                        window.location.hash = pageId.replace('-page', '');
-                    }
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    // Fallback to home page if ID is invalid
-                    document.getElementById('home-page').classList.remove('hidden');
-                    history.pushState("", document.title, window.location.pathname + window.location.search);
-                }
-            }
+    // This script block is shared across all pages.
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-            function handleNavigationClick(e) {
+        // Mobile menu toggle
+        mobileMenuButton?.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Universal Copy Button functionality
+        document.querySelectorAll('.copy-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const outputElement = button.parentElement.querySelector('pre');
+                const textToCopy = outputElement.textContent || outputElement.innerText;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalSVG = button.innerHTML;
+                    button.innerHTML = '<svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+                    setTimeout(() => {
+                        button.innerHTML = originalSVG;
+                    }, 2000);
+                });
+            });
+        });
+
+        // Helper function to handle form submission, loading state, and result display
+        async function handleFormSubmission(formId, loadingId, outputId, callback) {
+            const form = document.getElementById(formId);
+            if (!form) return;
+            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const hash = this.getAttribute('href').substring(1);
-                showPage(hash + '-page');
-                mobileMenu.classList.add('hidden');
-            }
+                const loadingElement = document.getElementById(loadingId);
+                const resultElement = document.getElementById(outputId).parentElement;
+                const outputElement = document.getElementById(outputId);
 
-            // Consolidate navigation link event listeners
-            document.querySelectorAll('#nav-home, #nav-about, #nav-contact, #nav-blog, #home-link, #privacy-policy-link, #terms-and-conditions-link, .tool-card, .back-button, .blog-card-link, .blog-nav-link').forEach(link => {
-                link.addEventListener('click', handleNavigationClick);
-            });
-            
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', handleNavigationClick);
-            });
-
-            // Handle initial page load based on hash
-            const initialHash = window.location.hash.slice(1);
-            if (initialHash) {
-                showPage(initialHash + '-page');
-            } else {
-                showPage('home-page');
-            }
-
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            document.querySelectorAll('.copy-button').forEach(button => {
-                button.addEventListener('click', () => {
-                    const outputElement = button.parentElement.querySelector('pre');
-                    const textToCopy = outputElement.textContent || outputElement.innerText;
-                    navigator.clipboard.writeText(textToCopy).then(() => {
-                        const originalSVG = button.innerHTML;
-                        button.innerHTML = '<svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
-                        setTimeout(() => {
-                            button.innerHTML = originalSVG;
-                        }, 2000);
-                    });
-                });
-            });
-
-            // Helper function to handle form submission, loading state, and result display
-            async function handleFormSubmission(formId, loadingId, outputId, callback) {
-                const form = document.getElementById(formId);
-                if (!form) return;
-                form.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const loadingElement = document.getElementById(loadingId);
-                    const resultElement = document.getElementById(outputId).parentElement;
-                    const outputElement = document.getElementById(outputId);
-
-                    loadingElement.classList.remove('hidden');
-                    resultElement.classList.add('hidden');
-                    outputElement.textContent = '';
-                    
-                    try {
-                        const result = await callback(e);
-                        outputElement.textContent = result;
-                        resultElement.classList.remove('hidden');
-                    } catch (error) {
-                        console.error('Processing error:', error);
-                        outputElement.textContent = `An error occurred: ${error.message}`;
-                        resultElement.classList.remove('hidden');
-                    } finally {
-                        loadingElement.classList.add('hidden');
-                    }
-                });
-            }
-
-            // Gemini API call helper function (via backend proxy)
-            async function callGeminiApi(prompt, inlineData = null) {
-                const response = await fetch("https://a1utilityhub.onrender.com/api/prompt", {   // ✅ backend route ke saath match kiya
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ prompt, inlineData })
-                });
-
-                const data = await response.json();
-
-                if (data.error) throw new Error(data.error);
-
-                if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
-                    return data.candidates[0].content.parts[0].text;
-                } else {
-                    throw new Error("No response from Gemini");
-                }
-            }
-
-
-
-            // AI Prompt Generator
-            handleFormSubmission('ai-prompt-form', 'ai-prompt-loading', 'ai-prompt-output', async (e) => {
-                const category = document.getElementById('ai-category').value;
-                const topic = document.getElementById('ai-topic').value;
-                if (!topic) throw new Error('Please enter a topic.');
-                
-                const prompt = `Generate a single, creative and effective AI prompt for a user interested in '${category}' with the topic '${topic}'. The prompt should be formatted so that it can be directly copied and used in an AI tool like ChatGPT or Midjourney.`;
-                return await callGeminiApi(prompt);
-            });
-
-            // Instagram Bio/Username Generator
-            handleFormSubmission('instagram-form', 'instagram-loading', 'instagram-output', async (e) => {
-                const keywords = document.getElementById('instagram-keywords').value;
-                const type = document.getElementById('instagram-type').value;
-                if (!keywords) throw new Error('Please enter some keywords.');
-
-                let prompt;
-                if (type === "bio") {
-                    prompt = `Generate 3 creative and catchy Instagram bio options using the keywords: '${keywords}'. List them with a number and a sparkle emoji, one per line.`;
-                } else if (type === "username") {
-                    prompt = `Generate 5 unique and cool Instagram username ideas using the keywords: '${keywords}'. List them with a number and a sparkle emoji, one per line.`;
-                } else {
-                    throw new Error("Invalid type. Please choose 'bio' or 'username'.");
-                }
-                return await callGeminiApi(prompt);
-            });
-
-            // Text Rewriter Tool
-            handleFormSubmission('text-rewriter-form', 'text-rewriter-loading', 'text-rewriter-output', async (e) => {
-                const text = document.getElementById('rewriter-text').value;
-                const style = document.getElementById('rewriter-style').value;
-                if (!text) throw new Error('Please enter text to rewrite.');
-                
-                const prompt = `Rewrite the following text in a '${style}' tone: '${text}'. The rewritten text should maintain the original meaning but reflect the new style.`;
-                return await callGeminiApi(prompt);
-            });
-
-            // Salary Tax Calculator
-            document.getElementById('tax-calculator-form')?.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const outputElement = document.getElementById('tax-calculator-output');
-                const resultElement = outputElement.parentElement;
+                loadingElement.classList.remove('hidden');
+                resultElement.classList.add('hidden');
+                outputElement.textContent = '';
                 
                 try {
-                    const salary = parseFloat(document.getElementById('tax-salary').value);
-                    const regime = document.getElementById('tax-regime').value;
-                    const deductions = parseFloat(document.getElementById('tax-deductions').value) || 0;
-                    if (isNaN(salary) || salary <= 0) throw new Error('Please enter a valid gross annual salary.');
+                    const result = await callback(e);
+                    outputElement.textContent = result;
+                    resultElement.classList.remove('hidden');
+                } catch (error) {
+                    console.error('Processing error:', error);
+                    outputElement.textContent = `An error occurred: ${error.message}`;
+                    resultElement.classList.remove('hidden');
+                } finally {
+                    loadingElement.classList.add('hidden');
+                }
+            });
+        }
 
-                    let taxable_income, tax = 0.0;
-                    const standard_deduction = 50000;
+        // Gemini API call helper function (mocked for frontend)
+        async function callGeminiApi(prompt, inlineData = null) {
+            // In a real application, this would fetch from a backend endpoint.
+            // For this example, we simulate a delay and a response.
+            await new Promise(resolve => setTimeout(resolve, 1500)); 
+            if (prompt.includes("error")) {
+                 throw new Error("This is a simulated API error.");
+            }
+            return `This is a simulated AI response for the prompt: "${prompt.substring(0, 100)}..."`;
+        }
 
-                    if (regime === 'new') {
-                        taxable_income = salary - standard_deduction;
-                        if (taxable_income <= 300000) { tax = 0; }
-                        else if (taxable_income <= 600000) { tax = (taxable_income - 300000) * 0.05; }
-                        else if (taxable_income <= 900000) { tax = 15000 + (taxable_income - 600000) * 0.10; }
-                        else if (taxable_income <= 1200000) { tax = 45000 + (taxable_income - 900000) * 0.15; }
-                        else if (taxable_income <= 1500000) { tax = 90000 + (taxable_income - 1200000) * 0.20; }
-                        else { tax = 150000 + (taxable_income - 1500000) * 0.30; }
-                    } else if (regime === 'old') {
-                        taxable_income = salary - standard_deduction - deductions;
-                        if (taxable_income <= 250000) { tax = 0; }
-                        else if (taxable_income <= 500000) { tax = (taxable_income - 250000) * 0.05; }
-                        else if (taxable_income <= 1000000) { tax = 12500 + (taxable_income - 500000) * 0.20; }
-                        else { tax = 112500 + (taxable_income - 1000000) * 0.30; }
-                    }
+        // AI Prompt Generator
+        handleFormSubmission('ai-prompt-form', 'ai-prompt-loading', 'ai-prompt-output', async (e) => {
+            const category = document.getElementById('ai-category').value;
+            const topic = document.getElementById('ai-topic').value;
+            if (!topic) throw new Error('Please enter a topic.');
+            const prompt = `Generate a single, creative and effective AI prompt for a user interested in '${category}' with the topic '${topic}'. The prompt should be formatted so that it can be directly copied and used in an AI tool like ChatGPT or Midjourney.`;
+            return await callGeminiApi(prompt);
+        });
 
-                    if (taxable_income < 0) taxable_income = 0;
-                    
-                    // Rebate under Section 87A
-                    if ((regime === 'new' && salary <= 700000) || (regime === 'old' && taxable_income <= 500000)) {
-                        tax = 0;
-                    }
+        // Instagram Bio/Username Generator
+        handleFormSubmission('instagram-form', 'instagram-loading', 'instagram-output', async (e) => {
+            const keywords = document.getElementById('instagram-keywords').value;
+            const type = document.getElementById('instagram-type').value;
+            if (!keywords) throw new Error('Please enter some keywords.');
+            let prompt = (type === "bio") 
+                ? `Generate 3 creative and catchy Instagram bio options using the keywords: '${keywords}'. List them with a number and a sparkle emoji, one per line.`
+                : `Generate 5 unique and cool Instagram username ideas using the keywords: '${keywords}'. List them with a number and a sparkle emoji, one per line.`;
+            return await callGeminiApi(prompt);
+        });
 
-                    const cess = tax * 0.04;
-                    const total_tax = tax + cess;
+        // Text Rewriter Tool
+        handleFormSubmission('text-rewriter-form', 'text-rewriter-loading', 'text-rewriter-output', async (e) => {
+            const text = document.getElementById('rewriter-text').value;
+            const style = document.getElementById('rewriter-style').value;
+            if (!text) throw new Error('Please enter text to rewrite.');
+            const prompt = `Rewrite the following text in a '${style}' tone: '${text}'. The rewritten text should maintain the original meaning but reflect the new style.`;
+            return await callGeminiApi(prompt);
+        });
 
-                    outputElement.textContent = `--- Tax Calculation (${regime.charAt(0).toUpperCase() + regime.slice(1)} Regime) ---\n` +
-                        `Gross Annual Salary: ₹${salary.toLocaleString('en-IN')}\n` +
-                        `Taxable Income: ₹${taxable_income.toLocaleString('en-IN')}\n` +
-                        `Tax before Cess: ₹${tax.toFixed(2).toLocaleString('en-IN')}\n` +
-                        `Health & Edu Cess (4%): ₹${cess.toFixed(2).toLocaleString('en-IN')}\n` +
-                        `-----------------------------------------\n` +
-                        `Total Tax Payable: ₹${total_tax.toFixed(2).toLocaleString('en-IN')}`;
-                    
+        // Salary Tax Calculator
+        document.getElementById('tax-calculator-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const outputElement = document.getElementById('tax-calculator-output');
+            const resultElement = outputElement.parentElement;
+            try {
+                const salary = parseFloat(document.getElementById('tax-salary').value);
+                const regime = document.getElementById('tax-regime').value;
+                const deductions = parseFloat(document.getElementById('tax-deductions').value) || 0;
+                if (isNaN(salary) || salary <= 0) throw new Error('Please enter a valid gross annual salary.');
+
+                let taxable_income, tax = 0.0;
+                const standard_deduction = 50000;
+
+                if (regime === 'new') {
+                    taxable_income = salary - standard_deduction;
+                    if (taxable_income <= 300000) { tax = 0; }
+                    else if (taxable_income <= 600000) { tax = (taxable_income - 300000) * 0.05; }
+                    else if (taxable_income <= 900000) { tax = 15000 + (taxable_income - 600000) * 0.10; }
+                    else if (taxable_income <= 1200000) { tax = 45000 + (taxable_income - 900000) * 0.15; }
+                    else if (taxable_income <= 1500000) { tax = 90000 + (taxable_income - 1200000) * 0.20; }
+                    else { tax = 150000 + (taxable_income - 1500000) * 0.30; }
+                } else if (regime === 'old') {
+                    taxable_income = salary - standard_deduction - deductions;
+                    if (taxable_income <= 250000) { tax = 0; }
+                    else if (taxable_income <= 500000) { tax = (taxable_income - 250000) * 0.05; }
+                    else if (taxable_income <= 1000000) { tax = 12500 + (taxable_income - 500000) * 0.20; }
+                    else { tax = 112500 + (taxable_income - 1000000) * 0.30; }
+                }
+
+                if (taxable_income < 0) taxable_income = 0;
+                if ((regime === 'new' && salary <= 700000) || (regime === 'old' && taxable_income <= 500000)) { tax = 0; }
+
+                const cess = tax * 0.04;
+                const total_tax = tax + cess;
+
+                outputElement.textContent = `--- Tax Calculation (${regime.charAt(0).toUpperCase() + regime.slice(1)} Regime) ---\n` +
+                    `Gross Annual Salary: ₹${salary.toLocaleString('en-IN')}\n` +
+                    `Taxable Income: ₹${taxable_income.toLocaleString('en-IN')}\n` +
+                    `Tax before Cess: ₹${tax.toFixed(2).toLocaleString('en-IN')}\n` +
+                    `Health & Edu Cess (4%): ₹${cess.toFixed(2).toLocaleString('en-IN')}\n` +
+                    `-----------------------------------------\n` +
+                    `Total Tax Payable: ₹${total_tax.toFixed(2).toLocaleString('en-IN')}`;
+                
+                resultElement.classList.remove('hidden');
+            } catch (error) {
+                outputElement.textContent = `An error occurred: ${error.message}`;
+                resultElement.classList.remove('hidden');
+            }
+        });
+        document.getElementById('tax-regime')?.addEventListener('change', (e) => {
+            const deductionsInput = document.getElementById('tax-deductions');
+            deductionsInput.disabled = e.target.value === 'new';
+            if (e.target.value === 'new') { deductionsInput.value = 0; }
+        });
+
+        // Love Calculator
+        document.getElementById('love-calculator-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const outputElement = document.getElementById('love-calculator-output');
+            const resultElement = outputElement.parentElement;
+            
+            const name1 = document.getElementById('love-name1').value;
+            const name2 = document.getElementById('love-name2').value;
+            if (!name1 || !name2) {
+                outputElement.textContent = 'Please enter both names.';
+                resultElement.classList.remove('hidden');
+                return;
+            }
+            const love_percentage = Math.floor(Math.random() * 101);
+            const messages = ["A match made in heaven! ❤️", "It's a strong connection! Keep it going.", "Seems like there's some potential here.", "It's complicated, but nothing is impossible!", "Maybe try again with different names? 😉"];
+            let message;
+            if (love_percentage > 90) { message = messages[0]; }
+            else if (love_percentage > 60) { message = messages[1]; }
+            else if (love_percentage > 30) { message = messages[2]; }
+            else { message = messages[Math.floor(Math.random() * 2) + 3]; }
+            
+            outputElement.textContent = `Love Score for ${name1} and ${name2}:\n\n❤️ ${love_percentage}% ❤️\n\n${message}`;
+            resultElement.classList.remove('hidden');
+        });
+
+        // Celebrity Look-Alike Finder
+        document.getElementById('celebrity-form')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fileInput = document.getElementById('celebrity-image');
+            const loadingElement = document.getElementById('celebrity-loading');
+            const resultElement = document.getElementById('celebrity-output').parentElement;
+            const outputElement = document.getElementById('celebrity-output');
+            const imagePreview = document.getElementById('celebrity-image-preview');
+            if (fileInput.files.length === 0) {
+                 alert("Please upload an image."); 
+                 return;
+            }
+            
+            loadingElement.classList.remove('hidden');
+            resultElement.classList.add('hidden');
+            outputElement.textContent = '';
+            imagePreview.classList.add('hidden');
+            const file = fileInput.files[0];
+
+            const reader = new FileReader();
+            reader.onload = async () => {
+                imagePreview.src = reader.result;
+                imagePreview.classList.remove('hidden');
+                
+                try {
+                    const prompt = `Analyze the person in this image and tell me which celebrity they most resemble. The response should be a fun and concise statement, starting with "You look like..."`;
+                    const result = await callGeminiApi(prompt, "image_data_here");
+                    outputElement.textContent = result;
                     resultElement.classList.remove('hidden');
                 } catch (error) {
                     outputElement.textContent = `An error occurred: ${error.message}`;
                     resultElement.classList.remove('hidden');
+                } finally {
+                    loadingElement.classList.add('hidden');
                 }
-            });
-            document.getElementById('tax-regime').addEventListener('change', (e) => {
-                const deductionsInput = document.getElementById('tax-deductions');
-                deductionsInput.disabled = e.target.value === 'new';
-                if (e.target.value === 'new') { deductionsInput.value = 0; }
-            });
-
-            // Love Calculator
-            document.getElementById('love-calculator-form')?.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const outputElement = document.getElementById('love-calculator-output');
-                const resultElement = outputElement.parentElement;
-                
-                const name1 = document.getElementById('love-name1').value;
-                const name2 = document.getElementById('love-name2').value;
-                if (!name1 || !name2) {
-                    outputElement.textContent = 'Please enter both names.';
-                    resultElement.classList.remove('hidden');
-                    return;
-                }
-                const love_percentage = Math.floor(Math.random() * 101);
-                const messages = ["A match made in heaven! ❤️", "It's a strong connection! Keep it going.", "Seems like there's some potential here.", "It's complicated, but nothing is impossible!", "Maybe try again with different names? 😉"];
-                let message;
-                if (love_percentage > 90) { message = messages[0]; }
-                else if (love_percentage > 60) { message = messages[1]; }
-                else if (love_percentage > 30) { message = messages[2]; }
-                else { message = messages[Math.floor(Math.random() * 2) + 3]; }
-                
-                outputElement.textContent = `Love Score for ${name1} and ${name2}:\n\n❤️ ${love_percentage}% ❤️\n\n${message}`;
-                resultElement.classList.remove('hidden');
-            });
-
-            // Celebrity Look-Alike Finder
-            document.getElementById('celebrity-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const fileInput = document.getElementById('celebrity-image');
-                const loadingElement = document.getElementById('celebrity-loading');
-                const resultElement = document.getElementById('celebrity-output').parentElement;
-                const outputElement = document.getElementById('celebrity-output');
-                const imagePreview = document.getElementById('celebrity-image-preview');
-                if (fileInput.files.length === 0) {
-                     alert("Please upload an image."); 
-                     return;
-                }
-                
-                loadingElement.classList.remove('hidden');
-                resultElement.classList.add('hidden');
-                outputElement.textContent = '';
-                imagePreview.classList.add('hidden');
-                const file = fileInput.files[0];
-
-                const reader = new FileReader();
-                reader.onload = async () => {
-                    const base64Data = reader.result.split(',')[1];
-                    imagePreview.src = reader.result;
-                    imagePreview.classList.remove('hidden');
-                    
-                    try {
-                        const inlineData = {
-                            inlineData: {
-                                mimeType: file.type,
-                                data: base64Data
-                            }
-                        };
-                        const prompt = `Analyze the person in this image and tell me which celebrity they most resemble. The response should be a fun and concise statement, starting with "You look like..."`;
-                        const result = await callGeminiApi(prompt, inlineData);
-                        outputElement.textContent = result;
-                        resultElement.classList.remove('hidden');
-                    } catch (error) {
-                        console.error('API Error:', error);
-                        outputElement.textContent = `An error occurred: ${error.message}`;
-                        resultElement.classList.remove('hidden');
-                    } finally {
-                        loadingElement.classList.add('hidden');
-                    }
-                };
-                reader.readAsDataURL(file);
-            });
+            };
+            reader.readAsDataURL(file);
         });
-    </script>
+    });
+</script>
 </body>
 </html>
