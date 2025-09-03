@@ -1,79 +1,105 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <!-- Homepage -->
   <url>
     <loc>https://a1utilityhub.tech/</loc>
-    <priority>1.0</priority>
+    <lastmod>2025-09-03</lastmod>
     <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
 
   <!-- Main Pages -->
-  
   <url>
     <loc>https://a1utilityhub.tech/about</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/contact</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/blog</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/privacy-policy</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/terms-and-conditions</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Blog Articles -->
   <url>
     <loc>https://a1utilityhub.tech/blog-1</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/blog-2</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/blog-3</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/blog-4</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Tools -->
   <url>
     <loc>https://a1utilityhub.tech/ai-prompt-generator</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/instagram-bio-generator</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/text-rewriter</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/salary-tax-calculator</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/love-calculator</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://a1utilityhub.tech/celebrity-look-alike-finder</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
 </urlset>
-
