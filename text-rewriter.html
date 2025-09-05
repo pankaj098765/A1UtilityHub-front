@@ -112,9 +112,20 @@
         </div>
     </footer>
 </div>
-<script>
+<script type="module">
+    import { 
+        callGeminiApiWithDataCollection, 
+        handleFormSubmissionWithDataCollection,
+        initializeDataCollection,
+        trackUserAction,
+        TOOLS 
+    } from './js/data-collection.js';
+
     // This script block is shared across all pages.
     document.addEventListener('DOMContentLoaded', () => {
+        // Initialize data collection for this tool
+        initializeDataCollection(TOOLS.TEXT_REWRITER);
+
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -123,76 +134,51 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Universal Copy Button functionality
+        // Enhanced Copy Button functionality with tracking
         document.querySelectorAll('.copy-button').forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', async () => {
                 const outputElement = button.parentElement.querySelector('pre');
                 const textToCopy = outputElement.textContent || outputElement.innerText;
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    const originalSVG = button.innerHTML;
-                    button.innerHTML = '<svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
-                    setTimeout(() => {
-                        button.innerHTML = originalSVG;
-                    }, 2000);
-                });
-            });
-        });
-
-        // Helper function to handle form submission, loading state, and result display
-        async function handleFormSubmission(formId, loadingId, outputId, callback) {
-            const form = document.getElementById(formId);
-            if (!form) return;
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const loadingElement = document.getElementById(loadingId);
-                const resultElement = document.getElementById(outputId).parentElement;
-                const outputElement = document.getElementById(outputId);
-
-                loadingElement.classList.remove('hidden');
-                resultElement.classList.add('hidden');
-                outputElement.textContent = '';
                 
-                try {
-                    const result = await callback(e);
-                    outputElement.textContent = result;
-                    resultElement.classList.remove('hidden');
-                } catch (error) {
-                    console.error('Processing error:', error);
-                    outputElement.textContent = `An error occurred: ${error.message}`;
-                    resultElement.classList.remove('hidden');
-                } finally {
-                    loadingElement.classList.add('hidden');
-                }
-            });
-        }
-
-            // Gemini API call helper function (via backend proxy)
-            async function callGeminiApi(prompt, inlineData = null) {
-                const response = await fetch("https://a1utilityhub.onrender.com/api/prompt", {   // ✅ backend route ke saath match kiya
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ prompt, inlineData })
+                await navigator.clipboard.writeText(textToCopy);
+                
+                // Track copy action
+                await trackUserAction('copy_result', TOOLS.TEXT_REWRITER, {
+                    contentLength: textToCopy.length,
+                    contentType: 'rewritten_text'
                 });
 
-                const data = await response.json();
-
-                if (data.error) throw new Error(data.error);
-
-                if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
-                    return data.candidates[0].content.parts[0].text;
-                } else {
-                    throw new Error("No response from Gemini");
-                }
-            }
-
-        // Text Rewriter Tool
-        handleFormSubmission('text-rewriter-form', 'text-rewriter-loading', 'text-rewriter-output', async (e) => {
-            const text = document.getElementById('rewriter-text').value;
-            const style = document.getElementById('rewriter-style').value;
-            if (!text) throw new Error('Please enter text to rewrite.');
-            const prompt = `Rewrite the following text in a '${style}' tone: '${text}'. The rewritten text should maintain the original meaning but reflect the new style.`;
-            return await callGeminiApi(prompt);
+                const originalSVG = button.innerHTML;
+                button.innerHTML = '<svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+                setTimeout(() => {
+                    button.innerHTML = originalSVG;
+                }, 2000);
+            });
         });
+
+        // Text Rewriter Tool with Firestore data collection
+        handleFormSubmissionWithDataCollection(
+            'text-rewriter-form', 
+            'text-rewriter-loading', 
+            'text-rewriter-output', 
+            async (e) => {
+                const text = document.getElementById('rewriter-text').value;
+                const style = document.getElementById('rewriter-style').value;
+                
+                if (!text) throw new Error('Please enter text to rewrite.');
+                
+                const inputData = { text, style, originalLength: text.length };
+                const prompt = `Rewrite the following text in a '${style}' tone: '${text}'. The rewritten text should maintain the original meaning but reflect the new style.`;
+                
+                // Use enhanced API call with data collection
+                return await callGeminiApiWithDataCollection(
+                    prompt, 
+                    TOOLS.TEXT_REWRITER, 
+                    inputData
+                );
+            },
+            TOOLS.TEXT_REWRITER
+        );
     });
 </script>
 </body>

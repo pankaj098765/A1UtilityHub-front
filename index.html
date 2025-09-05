@@ -39,6 +39,7 @@
                     <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="about.html">About</a></li>
                     <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="contact.html">Contact</a></li>
                     <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="blog.html">Blog</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="analytics-dashboard.html" title="Analytics Dashboard">📊</a></li>
                 </ul>
             </nav>
             <button class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-200 focus:outline-none" id="mobile-menu-button">
@@ -319,6 +320,25 @@
                 }
             };
             reader.readAsDataURL(file);
+        });
+    });
+</script>
+
+<script type="module">
+    import { trackPageView, trackUserAction } from './js/data-collection.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Track page view for home page
+        trackPageView('home');
+
+        // Track clicks on tool cards
+        document.querySelectorAll('a[href*=".html"]').forEach(link => {
+            link.addEventListener('click', async (e) => {
+                const toolName = link.href.split('/').pop().replace('.html', '');
+                await trackUserAction('navigate_to_tool', null, {
+                    targetTool: toolName
+                });
+            });
         });
     });
 </script>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Analytics Dashboard - A1UtilityHub</title>
+    <link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='90' font-size='90'&gt;📊&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafc; }
+        .gradient-text { background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card { background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+<div class="min-h-screen flex flex-col" id="app">
+    <header class="bg-white shadow-lg p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a class="text-3xl font-extrabold gradient-text" href="index.html">A1UtilityHub</a>
+            <h2 class="text-xl font-semibold text-gray-600">Analytics Dashboard</h2>
+        </div>
+    </header>
+    
+    <main class="flex-grow container mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Tool Usage Stats -->
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Interactions</h3>
+                <p class="text-3xl font-bold text-blue-600" id="total-interactions">Loading...</p>
+            </div>
+            
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Generated Content</h3>
+                <p class="text-3xl font-bold text-green-600" id="total-content">Loading...</p>
+            </div>
+            
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Page Views</h3>
+                <p class="text-3xl font-bold text-purple-600" id="total-pageviews">Loading...</p>
+            </div>
+            
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Copy Actions</h3>
+                <p class="text-3xl font-bold text-orange-600" id="total-copies">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Tool Usage Breakdown -->
+        <div class="card p-6 mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">Tool Usage Breakdown</h3>
+            <div id="tool-breakdown">Loading...</div>
+        </div>
+
+        <!-- Recent Activities -->
+        <div class="card p-6 mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">Recent Activities</h3>
+            <div id="recent-activities" class="space-y-2">Loading...</div>
+        </div>
+
+        <!-- Popular Content -->
+        <div class="card p-6">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">Popular Generated Content</h3>
+            <div id="popular-content" class="space-y-4">Loading...</div>
+        </div>
+    </main>
+</div>
+
+<script type="module">
+    import { getAnalyticsData, getPopularContent } from './js/firestore-service.js';
+
+    // Check if Firebase is configured
+    function isFirebaseConfigured() {
+        try {
+            const config = {
+                apiKey: "your-api-key-here",
+                authDomain: "your-project.firebaseapp.com",
+                projectId: "your-project-id"
+            };
+            return !config.apiKey.includes('your-') && !config.projectId.includes('your-');
+        } catch {
+            return false;
+        }
+    }
+
+    async function loadDashboard() {
+        if (!isFirebaseConfigured()) {
+            showConfigurationMessage();
+            return;
+        }
+
+        try {
+            // Load analytics data
+            const analytics = await getAnalyticsData(null, 1000);
+            const content = await getPopularContent(null, 50);
+            
+            // Calculate stats
+            const stats = calculateStats(analytics);
+            
+            // Update UI
+            updateStats(stats);
+            updateToolBreakdown(analytics);
+            updateRecentActivities(analytics.slice(0, 10));
+            updatePopularContent(content.slice(0, 10));
+            
+        } catch (error) {
+            console.error('Error loading dashboard:', error);
+            showErrorMessage();
+        }
+    }
+
+    function calculateStats(analytics) {
+        const interactions = analytics.filter(a => a.eventName === 'api_call_success').length;
+        const pageViews = analytics.filter(a => a.eventName === 'page_view').length;
+        const copies = analytics.filter(a => a.eventName === 'user_action' && a.eventData?.action === 'copy_result').length;
+        
+        const toolUsage = {};
+        analytics.forEach(item => {
+            const toolName = item.eventData?.toolName;
+            if (toolName) {
+                toolUsage[toolName] = (toolUsage[toolName] || 0) + 1;
+            }
+        });
+
+        return { interactions, pageViews, copies, toolUsage };
+    }
+
+    function updateStats(stats) {
+        document.getElementById('total-interactions').textContent = stats.interactions;
+        document.getElementById('total-pageviews').textContent = stats.pageViews;
+        document.getElementById('total-copies').textContent = stats.copies;
+    }
+
+    function updateToolBreakdown(analytics) {
+        const toolUsage = {};
+        analytics.forEach(item => {
+            const toolName = item.eventData?.toolName;
+            if (toolName && item.eventName === 'api_call_success') {
+                const displayName = toolName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                toolUsage[displayName] = (toolUsage[displayName] || 0) + 1;
+            }
+        });
+
+        const breakdownHtml = Object.entries(toolUsage)
+            .sort(([,a], [,b]) => b - a)
+            .map(([tool, count]) => `
+                <div class="flex justify-between items-center py-2">
+                    <span class="text-gray-700">${tool}</span>
+                    <span class="font-semibold text-blue-600">${count}</span>
+                </div>
+            `).join('') || '<p class="text-gray-500">No tool usage data available yet.</p>';
+
+        document.getElementById('tool-breakdown').innerHTML = breakdownHtml;
+    }
+
+    function updateRecentActivities(activities) {
+        const activitiesHtml = activities.map(activity => {
+            const time = activity.timestamp?.toDate?.() || new Date();
+            const timeStr = time.toLocaleString();
+            const eventDisplay = activity.eventName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            
+            return `
+                <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                    <div>
+                        <span class="text-gray-700">${eventDisplay}</span>
+                        ${activity.eventData?.toolName ? `<span class="text-sm text-gray-500 ml-2">(${activity.eventData.toolName.replace(/_/g, ' ')})</span>` : ''}
+                    </div>
+                    <span class="text-sm text-gray-400">${timeStr}</span>
+                </div>
+            `;
+        }).join('') || '<p class="text-gray-500">No recent activities available yet.</p>';
+
+        document.getElementById('recent-activities').innerHTML = activitiesHtml;
+    }
+
+    function updatePopularContent(content) {
+        document.getElementById('total-content').textContent = content.length;
+        
+        const contentHtml = content.map((item, index) => {
+            const time = item.timestamp?.toDate?.() || new Date();
+            const timeStr = time.toLocaleDateString();
+            const toolDisplay = item.toolName?.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Unknown';
+            const contentPreview = item.content?.substring(0, 100) + (item.content?.length > 100 ? '...' : '');
+            
+            return `
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-sm font-semibold text-purple-600">${toolDisplay}</span>
+                        <span class="text-xs text-gray-400">${timeStr}</span>
+                    </div>
+                    <p class="text-gray-700 text-sm">${contentPreview}</p>
+                    ${item.metadata ? `<div class="mt-2 text-xs text-gray-500">Response time: ${item.metadata.responseTime || 'N/A'}ms</div>` : ''}
+                </div>
+            `;
+        }).join('') || '<p class="text-gray-500">No generated content available yet.</p>';
+
+        document.getElementById('popular-content').innerHTML = contentHtml;
+    }
+
+    function showConfigurationMessage() {
+        const message = `
+            <div class="card p-8 text-center">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">🔧 Firebase Configuration Required</h2>
+                <p class="text-gray-600 mb-4">To view analytics data, please configure Firebase in your project.</p>
+                <p class="text-sm text-gray-500">
+                    See <code>FIREBASE_SETUP.md</code> for detailed setup instructions.
+                </p>
+            </div>
+        `;
+        document.querySelector('main').innerHTML = message;
+    }
+
+    function showErrorMessage() {
+        const message = `
+            <div class="card p-8 text-center">
+                <h2 class="text-2xl font-semibold text-red-600 mb-4">⚠️ Error Loading Data</h2>
+                <p class="text-gray-600 mb-4">There was an error loading the analytics data.</p>
+                <p class="text-sm text-gray-500">
+                    Please check the browser console for more details and ensure Firebase is properly configured.
+                </p>
+            </div>
+        `;
+        document.querySelector('main').innerHTML = message;
+    }
+
+    // Load dashboard when page loads
+    document.addEventListener('DOMContentLoaded', loadDashboard);
+</script>
+</body>
+</html>
