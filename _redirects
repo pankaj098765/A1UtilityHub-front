@@ -1,8 +1,8 @@
 # 🔹 Old blog URLs → New SEO-friendly URLs
-/blog-1   /10 Best AI Prompt Ideas to Boost Creativity in 2025 (With Examples & Tips).html   301
-/blog-2   /Top Instagram Bio Ideas for 2025: Creative Guide for Influencers & Brands.html   301
+/blog-1   /10 Best AI Prompt Ideas to Boost Creativity in 2025 With Examples & Tips.html   301
+/blog-2   /Top Instagram Bio Ideas for 2025 Creative Guide for Influencers & Brands.html   301
 /blog-3   /ultimate-rewriting-guide-2025.html   301
-/blog-4   /Complete Salary Tax Calculation Guide in India (2025 Edition).html   301
+/blog-4   /Complete Salary Tax Calculation Guide in India 2025 Edition.html   301
 
 # 🔹 Ensure clean URLs always resolve (catch-all for React/Vue/SPA if needed)
 /*    /index.html   200
