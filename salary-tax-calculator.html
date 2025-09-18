@@ -11,7 +11,11 @@
      crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f7fafc; }
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafc; font-size: 16px; }
+        a { color: #374151; text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: #1f2937; }
+        .text-gray-600 a, a.text-gray-600 { color: #4b5563; }
+        .text-gray-600 a:hover, a.text-gray-600:hover { color: #1f2937; }
     .gradient-text { background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
         .gradient-button { background-image: linear-gradient(to right, #9a9ae1, #69bff8); box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75); transition: all 0.3s ease-in-out; }
         .gradient-button:hover { transform: scale(1.05); box-shadow: 0 6px 20px 0 rgba(116, 79, 168, 0.9); }
