@@ -12,7 +12,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f7fafc; }
-        .gradient-text { background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-text { background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
         .gradient-button { background-image: linear-gradient(to right, #9a9ae1, #69bff8); box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75); transition: all 0.3s ease-in-out; }
         .gradient-button:hover { transform: scale(1.05); box-shadow: 0 6px 20px 0 rgba(116, 79, 168, 0.9); }
         .loader { border-top-color: #69bff8; -webkit-animation: spinner 1.5s linear infinite; animation: spinner 1.5s linear infinite; }
@@ -172,88 +172,6 @@
         </div>
     </footer>
 </div>
-<script>
-    // This script block is shared across all pages.
-    document.addEventListener('DOMContentLoaded', () => {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        // Mobile menu toggle
-        mobileMenuButton?.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Universal Copy Button functionality
-        document.querySelectorAll('.copy-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const outputElement = button.parentElement.querySelector('pre');
-                const textToCopy = outputElement.textContent || outputElement.innerText;
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    const originalSVG = button.innerHTML;
-                    button.innerHTML = '<svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
-                    setTimeout(() => {
-                        button.innerHTML = originalSVG;
-                    }, 2000);
-                });
-            });
-        });
-
-        // Salary Tax Calculator
-        document.getElementById('tax-calculator-form')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const outputElement = document.getElementById('tax-calculator-output');
-            const resultElement = outputElement.parentElement;
-            try {
-                const salary = parseFloat(document.getElementById('tax-salary').value);
-                const regime = document.getElementById('tax-regime').value;
-                const deductions = parseFloat(document.getElementById('tax-deductions').value) || 0;
-                if (isNaN(salary) || salary <= 0) throw new Error('Please enter a valid gross annual salary.');
-
-                let taxable_income, tax = 0.0;
-                const standard_deduction = 50000;
-
-                if (regime === 'new') {
-                    taxable_income = salary - standard_deduction;
-                    if (taxable_income <= 300000) { tax = 0; }
-                    else if (taxable_income <= 600000) { tax = (taxable_income - 300000) * 0.05; }
-                    else if (taxable_income <= 900000) { tax = 15000 + (taxable_income - 600000) * 0.10; }
-                    else if (taxable_income <= 1200000) { tax = 45000 + (taxable_income - 900000) * 0.15; }
-                    else if (taxable_income <= 1500000) { tax = 90000 + (taxable_income - 1200000) * 0.20; }
-                    else { tax = 150000 + (taxable_income - 1500000) * 0.30; }
-                } else if (regime === 'old') {
-                    taxable_income = salary - standard_deduction - deductions;
-                    if (taxable_income <= 250000) { tax = 0; }
-                    else if (taxable_income <= 500000) { tax = (taxable_income - 250000) * 0.05; }
-                    else if (taxable_income <= 1000000) { tax = 12500 + (taxable_income - 500000) * 0.20; }
-                    else { tax = 112500 + (taxable_income - 1000000) * 0.30; }
-                }
-
-                if (taxable_income < 0) taxable_income = 0;
-                if ((regime === 'new' && salary <= 700000) || (regime === 'old' && taxable_income <= 500000)) { tax = 0; }
-
-                const cess = tax * 0.04;
-                const total_tax = tax + cess;
-
-                outputElement.textContent = `--- Tax Calculation (${regime.charAt(0).toUpperCase() + regime.slice(1)} Regime) ---\n` +
-                    `Gross Annual Salary: ₹${salary.toLocaleString('en-IN')}\n` +
-                    `Taxable Income: ₹${taxable_income.toLocaleString('en-IN')}\n` +
-                    `Tax before Cess: ₹${tax.toFixed(2).toLocaleString('en-IN')}\n` +
-                    `Health & Edu Cess (4%): ₹${cess.toFixed(2).toLocaleString('en-IN')}\n` +
-                    `-----------------------------------------\n` +
-                    `Total Tax Payable: ₹${total_tax.toFixed(2).toLocaleString('en-IN')}`;
-                
-                resultElement.classList.remove('hidden');
-            } catch (error) {
-                outputElement.textContent = `An error occurred: ${error.message}`;
-                resultElement.classList.remove('hidden');
-            }
-        });
-        document.getElementById('tax-regime')?.addEventListener('change', (e) => {
-            const deductionsInput = document.getElementById('tax-deductions');
-            deductionsInput.disabled = e.target.value === 'new';
-            if (e.target.value === 'new') { deductionsInput.value = 0; }
-        });
-    });
-</script>
+<script defer src="assets/js/site.min.js"></script>
 </body>
 </html>
