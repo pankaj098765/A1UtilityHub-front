@@ -1,8 +1,4 @@
-				img { max-width: 100%; height: auto; }
-				@media (max-width: 640px) {
-					a { color: #5b21b6; }
-					a:hover { color: #3b0f84; }
-				}
+
 User-agent: *
 Allow: /
 Sitemap: https://a1utilityhub.tech/sitemap.xml
