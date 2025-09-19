@@ -1,0 +1,61 @@
+/* Mobile-specific styles */
+@media (max-width: 640px) {
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Basic mobile navigation */
+  .navbar {
+    padding: 0.5rem;
+  }
+
+  .navbar-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  /* Mobile-friendly buttons and links */
+  .btn-primary {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.75rem;
+    min-height: 44px;
+  }
+
+  a {
+    color: #5b21b6;
+    text-decoration: none;
+  }
+
+  a:hover, 
+  a:focus {
+    color: #3b0f84;
+  }
+
+  /* Mobile layout adjustments */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  /* Mobile typography */
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+}
