@@ -1,8 +1,3 @@
-# 🔹 Old blog URLs → New SEO-friendly URLs
-/blog-1   /10-best-ai-prompt-ideas-2025.html   301
-/blog-2   /top-instagram-bio-ideas-2025.html   301
 /blog-3   /ultimate-rewriting-guide-2025.html   301
 /blog-4   /complete-salary-tax-calculation-guide-2025.html   301
-
-# 🔹 Ensure clean URLs always resolve (catch-all for React/Vue/SPA if needed)
 /*    /index.html   200
