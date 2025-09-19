@@ -22,6 +22,17 @@
         .gradient-text { background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
         .gradient-button { background-image: linear-gradient(to right, #9a9ae1, #69bff8); box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75); transition: all 0.3s ease-in-out; }
         .gradient-button:hover { transform: scale(1.05); box-shadow: 0 6px 20px 0 rgba(116, 79, 168, 0.9); }
+        @media (max-width: 640px) {
+            .gradient-button {
+                width: 100%;
+                font-size: 1rem;
+                padding: 0.75rem;
+                min-height: 44px;
+            }
+            .tool-card {
+                padding: 1rem;
+            }
+        }
     </style>
     <meta content="Free Online Fun & Utility Tools - AI Powered" name="title"/>
     <meta content="Try 7 free online tools: AI Prompt Generator, Instagram Bio & Username Generator, Text Rewriter, Salary Tax Calculator, Time Zone Converter, Love Calculator, and Celebrity Look-Alike Finder." name="description"/>
@@ -74,13 +85,15 @@
         });
         </script>
     </header>
-    <main class="flex-grow container mx-auto p-4 md:p-8">
-        <section class="text-center py-16 md:py-24">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 gradient-text">Your AI & Fun Utility Hub</h1>
-            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">A collection of smart tools designed to help you with your creative, social, and daily tasks.</p>
-            <a class="px-8 py-4 text-lg rounded-full text-white font-bold inline-block gradient-button" href="ai-prompt-generator.html">Explore All Tools</a>
+    <main class="flex-grow container mx-auto p-4 sm:p-6 md:p-8">
+        <section class="text-center py-8 sm:py-16 md:py-24">
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-4 gradient-text">Your AI & Fun Utility Hub</h1>
+            <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8">A collection of smart tools designed to help you with your creative, social, and daily tasks.</p>
+            <a class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-full text-white font-bold inline-block gradient-button" href="ai-prompt-generator.html">Explore All Tools</a>
         </section>
-        <section class="tools-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+        
+        <!-- updated: responsive grid layout -->
+        <section class="tools-grid grid gap-4 sm:gap-6 grid-cols-2 lg:grid-cols-3">
             <a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="ai-prompt-generator.html">
                 <div class="text-5xl mb-4 text-purple-500 group-hover:text-purple-600 transition duration-300">💡</div>
                 <h3 class="text-xl font-bold mb-2">AI Prompt Generator</h3>
@@ -122,19 +135,6 @@
 <script defer src="assets/js/site.min.js"></script>
 </body>
 </html>
-            <p class="text-gray-700 text-lg mb-4">
-                Text rewriting is another area where A1UtilityHub shines. Our Text Rewriter Tool allows you to transform any sentence or paragraph into a different style or tone without losing its original meaning. Whether you want to formalize casual writing, make content more engaging, or simply improve readability, this tool is a valuable asset for students, bloggers, and content creators alike.
-            </p>
-            <p class="text-gray-700 text-lg mb-4">
-                Managing personal finances can be daunting, especially with changing tax laws. Our Salary Tax Calculator is tailored for Indian users, offering a fast and accurate way to calculate income tax under both old and new tax regimes. By simply entering your salary and deductions, you can instantly see your taxable income, tax liability, and health & education cess. This tool helps users make informed financial decisions while staying compliant with tax regulations.
-            </p>
-            <p class="text-gray-700 text-lg mb-4">
-                Love and relationships can be complex, but that doesn’t mean we can’t have fun exploring them. Our Love Calculator provides an entertaining way to assess compatibility between two people. Using a playful algorithm, the tool generates a compatibility score and provides light-hearted advice or comments. This tool is perfect for users who enjoy interactive and fun online experiences with friends, family, or partners.
-            </p>
-            <p class="text-gray-700 text-lg mb-4">
-                Have you ever wondered which celebrity you resemble? The Celebrity Look-Alike Finder allows users to upload a photo and find their doppelganger in the world of stars. Powered by AI, this tool analyzes facial features to match users with famous personalities, making the experience both fun and engaging. It's a great way to spark conversations, share results on social media, and enjoy a moment of entertainment.
-            </p>
-            <p class="text-gray-700 text-lg mb-4">
                 At A1UtilityHub, we prioritize user experience and accessibility. Our website features a clean, intuitive interface that makes navigating between tools effortless. Whether you are accessing the site on a desktop, tablet, or mobile device, you’ll find that every feature is optimized for performance and ease of use. This ensures that users can quickly accomplish tasks without frustration, making our platform reliable and enjoyable.
             </p>
             <p class="text-gray-700 text-lg mb-4">
