@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <!-- Homepage -->
   <url>
     <loc>https://a1utilityhub.tech/</loc>
@@ -11,31 +10,31 @@
 
   <!-- Main Pages -->
   <url>
-    <loc>https://a1utilityhub.tech/about</loc>
+    <loc>https://a1utilityhub.tech/about.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/contact</loc>
+    <loc>https://a1utilityhub.tech/contact.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/blog</loc>
+    <loc>https://a1utilityhub.tech/blog.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/privacy-policy</loc>
+    <loc>https://a1utilityhub.tech/privacy-policy.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/terms-and-conditions</loc>
+    <loc>https://a1utilityhub.tech/terms-and-conditions.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
@@ -43,25 +42,25 @@
 
   <!-- Blog Articles -->
   <url>
-    <loc>https://a1utilityhub.tech/10-best-ai-prompt-ideas-2025</loc>
+    <loc>https://a1utilityhub.tech/10-best-ai-prompt-ideas-2025.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/top-instagram-bio-ideas-2025</loc>
+    <loc>https://a1utilityhub.tech/top-instagram-bio-ideas-2025.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/ultimate-rewriting-guide-2025</loc>
-    <lastmod>2025-09-03</lastmod>
+    <loc>https://a1utilityhub.tech/ultimate-rewriting-guide-2025.html</loc>
+    <lastmod>2025-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/complete-salary-tax-guide-india-2025</loc>
+    <loc>https://a1utilityhub.tech/complete-salary-tax-calculation-guide-2025.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -69,40 +68,39 @@
 
   <!-- Tools -->
   <url>
-    <loc>https://a1utilityhub.tech/ai-prompt-generator</loc>
+    <loc>https://a1utilityhub.tech/ai-prompt-generator.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/instagram-bio-generator</loc>
+    <loc>https://a1utilityhub.tech/instagram-bio-generator.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/text-rewriter</loc>
+    <loc>https://a1utilityhub.tech/text-rewriter.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/salary-tax-calculator</loc>
+    <loc>https://a1utilityhub.tech/salary-tax-calculator.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/love-calculator</loc>
+    <loc>https://a1utilityhub.tech/love-calculator.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://a1utilityhub.tech/celebrity-look-alike-finder</loc>
+    <loc>https://a1utilityhub.tech/celebrity-look-alike-finder.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
 </urlset>
