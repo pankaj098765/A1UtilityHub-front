@@ -109,4 +109,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- New: Rewriting for AI Overviews -->
+  <url>
+    <loc>https://a1utilityhub.tech/rewriting-for-ai-overviews.html</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
