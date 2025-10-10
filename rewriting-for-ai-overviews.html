@@ -45,6 +45,27 @@
       background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
+
+    /* Scoped blog content styles for consistent UI */
+    .post-content p { margin: 0 0 1rem; line-height: 1.8; }
+    .post-content h2 {
+      margin: 2rem 0 0.75rem;
+      font-size: 1.5rem; font-weight: 800; color: #6b21b6; /* purple-700 */
+    }
+    @media (min-width: 768px) {
+      .post-content h2 { font-size: 1.875rem; } /* md:text-3xl */
+    }
+    .post-content h3 {
+      margin: 1.5rem 0 0.5rem;
+      font-size: 1.25rem; font-weight: 700; color: #7c3aed; /* violet-600 */
+    }
+    .post-content ul, .post-content ol { margin: 0 0 1rem 1.25rem; }
+    .post-content li { margin-bottom: 0.5rem; }
+    .post-content hr { margin: 2rem 0; border: 0; border-top: 1px solid #e5e7eb; }
+    .post-content a { color: #6b21b6; text-decoration: underline; }
+    .post-content code { background: #f3f4f6; padding: 0 0.25rem; border-radius: 4px; }
+    .post-content strong { color: #111827; }
+    .post-content em { color: #374151; }
   </style>
 
   <!-- AdSense -->
@@ -84,7 +105,7 @@
     </a>
 
     <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-      <article class="max-w-none text-gray-700 prose">
+      <article class="post-content max-w-none text-gray-700">
         <h1 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Rewriting for AI Overviews: How to Make Your Content Discoverable by Generative AI Systems (2025 Guide)</h1>
         <p class="text-sm text-gray-500 mb-8">By A1UtilityHub – Published: October 10, 2025</p>
 
@@ -163,7 +184,8 @@
 
         <h2>Conclusion</h2>
         <p>The shift to summaries is here. Keep practicing <strong>rewriting for AI overviews</strong> with clear answers and skimmable formatting. Explore our <a href="ultimate-rewriting-guide-2025.html">Ultimate Rewriting Guide 2025</a> and <a href="10-best-ai-prompt-ideas-2025.html">AI Prompt Ideas 2025</a> for more.</p>
-        <hr class="my-12"/>
+
+        <hr/>
         <h3 class="text-2xl font-bold text-center mb-6 text-gray-800">Continue Reading</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
           <a class="block p-4 bg-gray-50 rounded-lg hover:bg-gray-100 hover:text-purple-600 font-semibold" href="10-best-ai-prompt-ideas-2025.html">AI Prompt Ideas 2025</a>
