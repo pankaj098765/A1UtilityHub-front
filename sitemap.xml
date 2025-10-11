@@ -23,7 +23,7 @@
   </url>
   <url>
     <loc>https://a1utilityhub.tech/blog.html</loc>
-    <lastmod>2025-09-03</lastmod>
+    <lastmod>2025-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -114,6 +114,14 @@
   <url>
     <loc>https://a1utilityhub.tech/rewriting-for-ai-overviews.html</loc>
     <lastmod>2025-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- New: How to Rewrite Old Articles in 2025 -->
+  <url>
+    <loc>https://a1utilityhub.tech/how-to-rewrite-old-articles.html</loc>
+    <lastmod>2025-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
