@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>A1UtilityHub</title>
-    <link rel="canonical" href="https://a1utilityhub.tech/index.html">
+    <link rel="canonical" href="https://a1utilityhub.tech/">
     <meta content="A collection of fun and useful AI and utility tools, including prompt generation, text rewriting, and a tax calculator." name="description"/>
     <link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='90' font-size='90'&gt;🛠️&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
     
@@ -12,7 +12,7 @@
     <meta property="og:title" content="A1UtilityHub - Free Online AI & Utility Tools"/>
     <meta property="og:description" content="Free online AI and utility tools: AI Prompt Generator, Text Rewriter, Salary Tax Calculator, Instagram Bio, Love Calculator, more."/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://a1utilityhub.tech/index.html"/>
+    <meta property="og:url" content="https://a1utilityhub.tech/"/>
     <meta property="og:site_name" content="A1UtilityHub"/>
     <meta property="og:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=630&q=80"/>
     <meta property="og:image:alt" content="A1UtilityHub - Free Online AI and Utility Tools"/>
@@ -29,6 +29,11 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
+                img { max-width: 100%; height: auto; }
+                @media (max-width: 640px) {
+                    a { color: #5b21b6; }
+                    a:hover { color: #3b0f84; }
+                }
         body { font-family: 'Inter', sans-serif; background-color: #f7fafc; font-size: 16px; }
         a { color: #374151; text-decoration: none; transition: color 0.2s ease; }
         a:hover { color: #1f2937; }
@@ -69,7 +74,7 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             </button>
         </div>
-        <div class="hidden md:hidden bg-white mt-2 rounded-xl shadow-lg" id="mobile-menu">
+        <div class="hidden bg-white mt-2 rounded-xl shadow-lg" id="mobile-menu">
             <ul class="flex flex-col space-y-2 p-4 text-center">
                 <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="index.html">Home</a></li>
                 <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="about.html">About</a></li>
@@ -77,6 +82,21 @@
                 <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="blog.html">Blog</a></li>
             </ul>
         </div>
+        <script>
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', function() {
+          const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+          menuBtn.setAttribute('aria-expanded', !expanded);
+          mobileMenu.classList.toggle('hidden');
+        });
+        window.addEventListener('resize', function() {
+          if(window.innerWidth > 640) {
+            mobileMenu.classList.add('hidden');
+            menuBtn.setAttribute('aria-expanded', false);
+          }
+        });
+        </script>
     </header>
     <main class="flex-grow container mx-auto p-4 md:p-8">
         <section class="text-center py-16 md:py-24">
@@ -84,7 +104,7 @@
             <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">A collection of smart tools designed to help you with your creative, social, and daily tasks.</p>
             <a class="px-8 py-4 text-lg rounded-full text-white font-bold inline-block gradient-button" href="ai-prompt-generator.html">Explore All Tools</a>
         </section>
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <section class="tools-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
             <a class="tool-card p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-2 group cursor-pointer" href="ai-prompt-generator.html">
                 <div class="text-5xl mb-4 text-purple-500 group-hover:text-purple-600 transition duration-300">💡</div>
                 <h3 class="text-xl font-bold mb-2">AI Prompt Generator</h3>
@@ -136,7 +156,7 @@
                 Managing personal finances can be daunting, especially with changing tax laws. Our Salary Tax Calculator is tailored for Indian users, offering a fast and accurate way to calculate income tax under both old and new tax regimes. By simply entering your salary and deductions, you can instantly see your taxable income, tax liability, and health & education cess. This tool helps users make informed financial decisions while staying compliant with tax regulations.
             </p>
             <p class="text-gray-700 text-lg mb-4">
-                Love and relationships can be complex, but that doesn't mean we can't have fun exploring them. Our Love Calculator provides an entertaining way to assess compatibility between two people. Using a playful algorithm, the tool generates a compatibility score and provides light-hearted advice or comments. This tool is perfect for users who enjoy interactive and fun online experiences with friends, family, or partners.
+                Love and relationships can be complex, but that doesn’t mean we can’t have fun exploring them. Our Love Calculator provides an entertaining way to assess compatibility between two people. Using a playful algorithm, the tool generates a compatibility score and provides light-hearted advice or comments. This tool is perfect for users who enjoy interactive and fun online experiences with friends, family, or partners.
             </p>
             <p class="text-gray-700 text-lg mb-4">
                 Have you ever wondered which celebrity you resemble? The Celebrity Look-Alike Finder allows users to upload a photo and find their doppelganger in the world of stars. Powered by AI, this tool analyzes facial features to match users with famous personalities, making the experience both fun and engaging. It's a great way to spark conversations, share results on social media, and enjoy a moment of entertainment.
@@ -169,6 +189,15 @@
         </div>
     </footer>
 </div>
-<script defer src="assets/js/site.min.js"></script> 
+<script defer src="assets/js/site.min.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8552348654911268"
+     data-ad-slot="1234567890"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </body>  
 </html>
