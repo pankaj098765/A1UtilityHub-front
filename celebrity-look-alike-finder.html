@@ -1,3 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Celebrity Look-Alike Finder - A1UtilityHub</title>
+    <link rel="canonical" href="https://a1utilityhub.tech/celebrity-look-alike-finder">
+    <meta content="Discover which celebrity you look like with our fun look-alike finder. Upload your image to find your match!" name="description"/>
+    <link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='90' font-size='90'&gt;🛠️&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8552348654911268"
+     crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+                img { max-width: 100%; height: auto; }
+                @media (max-width: 640px) {
+                    a { color: #5b21b6; }
+                    a:hover { color: #3b0f84; }
+                }
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafc; font-size: 16px; }
+        a { color: #374151; text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: #1f2937; }
+        .text-gray-600 a, a.text-gray-600 { color: #4b5563; }
+        .text-gray-600 a:hover, a.text-gray-600:hover { color: #1f2937; }
+    .gradient-text { background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-button { background-image: linear-gradient(to right, #9a9ae1, #69bff8); box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75); transition: all 0.3s ease-in-out; }
+        .gradient-button:hover { transform: scale(1.05); box-shadow: 0 6px 20px 0 rgba(116, 79, 168, 0.9); }
+        .loader { border-top-color: #69bff8; -webkit-animation: spinner 1.5s linear infinite; animation: spinner 1.5s linear infinite; }
+        @-webkit-keyframes spinner { 0% { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .form-input { border: 2px solid #94a3b8; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+        .form-input:focus { outline: none; border-color: #e2e8f0; box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.7); }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+<div class="min-h-screen flex flex-col" id="app">
+    <header class="bg-white shadow-lg p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a class="text-3xl font-extrabold gradient-text" href="index.html">A1UtilityHub</a>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6 font-medium">
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="index.html">Home</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="about.html">About</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="contact.html">Contact</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+            <button id="mobile-menu-button" aria-label="Open navigation menu" aria-expanded="false" class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-200 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            </button>
+        </div>
+        <div class="hidden md:hidden bg-white mt-2 rounded-xl shadow-lg" id="mobile-menu">
+            <ul class="flex flex-col space-y-2 p-4 text-center">
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="index.html">Home</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="about.html">About</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="contact.html">Contact</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="flex-grow container mx-auto p-4 md:p-8">
+        <div class="page-content">
+            <a class="text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="index.html">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                Back to All Tools
+            </a>
+            <h1 class="text-4xl font-bold mb-6 gradient-text">Celebrity Look-Alike Finder</h1>
+            <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                <form class="space-y-6" id="celebrity-form">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="celebrity-image">Upload your image</label>
+                        <input accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-100 file:text-purple-700 hover:file:bg-purple-200" id="celebrity-image" type="file"/>
+                    </div>
+                    <button class="w-full px-6 py-3 text-lg text-white font-bold rounded-lg gradient-button" type="submit">Find Look-Alike ✨</button>
+                </form>
+                <div class="hidden mt-6 text-center" id="celebrity-loading">
+                    <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
+                    <p class="text-gray-500 font-medium">Analyzing...</p>
+                </div>
+                <div class="mt-6 p-6 bg-gray-50 rounded-lg relative hidden border border-gray-200 text-center" id="celebrity-result">
+                    <img alt="Uploaded Image" class="max-w-xs mx-auto rounded-md mb-4 hidden" id="celebrity-image-preview" src="#"/>
+                    <pre class="whitespace-pre-wrap text-sm" id="celebrity-output"></pre>
+                    <button class="copy-button absolute top-2 right-2 p-1 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-600" aria-label="Copy result to clipboard">
+                        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-xl p-8 mt-8">
+                <div class="prose max-w-none text-gray-700 space-y-4">
+                    <h2 class="text-2xl font-semibold mb-4">Introduction</h2>
+                    <p>Have you ever been told you look like a famous actor, singer, or athlete? The idea of finding your celebrity twin has fascinated people for years. With modern artificial intelligence (AI) and facial recognition technologies, it is now possible to upload a selfie and instantly discover which celebrity shares your features. Our Celebrity Look-Alike Finder is designed as an easy-to-use, entertaining, and safe tool that helps users satisfy their curiosity while having fun.</p>
+
+                    <h2 class="text-2xl font-semibold mb-4">How Does It Work?</h2>
+                    <p>The tool uses AI-powered facial analysis to compare the unique features of your uploaded photo with a large database of celebrity images. It looks at aspects like face shape, eye spacing, jawline, nose, and even smile patterns. Within seconds, you receive a result that highlights the closest match along with a fun statement like, “You look like Chris Hemsworth” or “You resemble Priyanka Chopra.”</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Step 1:</strong> Upload a selfie or portrait photo.</li>
+                        <li><strong>Step 2:</strong> The AI scans key facial features.</li>
+                        <li><strong>Step 3:</strong> The system compares your face against celebrity data.</li>
+                        <li><strong>Step 4:</strong> Your best match is displayed instantly.</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold mb-4">Why People Love Look-Alike Tools</h2>
+                    <p>Celebrity resemblance tools have become very popular on social media because they are engaging, shareable, and sometimes surprisingly accurate. People enjoy posting their look-alike results with friends and family, sparking conversations and laughter. Beyond fun, this type of tool can also boost confidence by showing users how they resemble admired celebrities.</p>
+
+                    <h2 class="text-2xl font-semibold mb-4">Examples of Use Cases</h2>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Entertainment:</strong> Perfect for parties or casual fun with friends.</li>
+                        <li><strong>Social Media Engagement:</strong> Users love sharing results to gain likes and comments.</li>
+                        <li><strong>Confidence Boost:</strong> Finding out you resemble a global superstar can brighten your day.</li>
+                        <li><strong>Icebreakers:</strong> A great way to start conversations in online communities or dating apps.</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold mb-4">Accuracy and Limitations</h2>
+                    <p>While AI technology has advanced significantly, it is important to remember that celebrity look-alike tools are created for entertainment. Lighting, camera quality, facial expressions, and angles can influence the accuracy of results. Sometimes, the resemblance may be uncanny; other times, it may feel far-fetched. Treat the results as a fun activity rather than a scientific conclusion.</p>
+
+                    <h2 class="text-2xl font-semibold mb-4">Privacy and Safety</h2>
+                    <p>User privacy is one of our top priorities. Uploaded images are processed in real-time and not stored permanently. This means your personal data remains safe, and your photos are not shared with third parties. You can enjoy the experience without worrying about misuse of your information.</p>
+
+                    <h2 class="text-2xl font-semibold mb-4">Tips for Best Results</h2>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Upload a clear photo taken in good lighting.</li>
+                        <li>Face the camera directly for better recognition.</li>
+                        <li>Avoid wearing sunglasses or heavy filters that hide facial features.</li>
+                        <li>Use a recent photo to get the most accurate comparison.</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold mb-4">Fun Facts About Celebrity Look-Alikes</h2>
+                    <p>Throughout history, many ordinary people have gained fame simply because they resembled a celebrity. For example, professional look-alikes are often hired for events, ads, or even to act as body doubles in movies. The fascination with doppelgängers is so strong that entire competitions are held worldwide to find the most convincing celebrity look-alike.</p>
+
+                    <h2 class="text-2xl font-semibold mb-4">Frequently Asked Questions (FAQ)</h2>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Is my photo stored?</strong> No, images are deleted after instant processing.</li>
+                        <li><strong>Does it work on group photos?</strong> We recommend uploading a solo photo for best results.</li>
+                        <li><strong>Which celebrities are included?</strong> The database covers actors, singers, athletes, and global icons.</li>
+                        <li><strong>Is the tool free?</strong> Yes, our Celebrity Look-Alike Finder is completely free to use.</li>
+                        <li><strong>Can kids use it?</strong> Yes, but parental guidance is recommended for younger users.</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold mb-4">Disclaimer</h2>
+                    <p>This tool is designed for entertainment purposes only. Results may vary and should not be taken as professional or scientific evaluations. We encourage users to enjoy the fun, share their results responsibly, and remember that true beauty lies in individuality.</p>
+
+                    <h2 class="text-2xl font-semibold mb-4">Conclusion</h2>
+                    <p>The Celebrity Look-Alike Finder is more than just a game—it’s a modern example of how artificial intelligence can blend technology with entertainment. Whether you’re curious about your celebrity twin, want to make friends laugh, or need a fun social media post, this tool delivers instant joy. Try it today, discover your match, and don’t forget to share the fun with your circle!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white shadow-inner p-4 mt-8">
+        <div class="container mx-auto text-center text-gray-500 font-medium">
+            © 2024 A1UtilityHub. All rights reserved. | <a class="hover:underline text-gray-600" href="privacy-policy.html">Privacy Policy</a> | <a class="hover:underline text-gray-600" href="terms-and-conditions.html">Terms & Conditions</a>
+        </div>
+    </footer>
+</div>
+<script defer src="assets/js/site.min.js"></script>
+<script defer src="assets/js/bonus.js"
+            data-verify-url="https://secretshorebot-341306804018.asia-south1.run.app/verify_bonus"
+            data-secret="0921powqlksamnxz"
+            data-bot="SecretShoreBot"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8552348654911268"
+     data-ad-slot="1234567890"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+</html>
 <script defer src="assets/js/bonus.js"
           data-verify-url="https://secretshorebot-341306804018.asia-south1.run.app/verify_bonus"
           data-secret="0921powqlksamnxz"

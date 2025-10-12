@@ -1,3 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Instagram Bio/Username Generator - A1UtilityHub</title>
+    <link rel="canonical" href="https://a1utilityhub.tech/instagram-bio-generator">
+    <meta content="Find the perfect bio or a catchy username for your Instagram profile with our free generator." name="description"/>
+    <link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='90' font-size='90'&gt;🛠️&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+                img { max-width: 100%; height: auto; }
+                @media (max-width: 640px) {
+                    a { color: #5b21b6; }
+                    a:hover { color: #3b0f84; }
+                }
+        body { font-family: 'Inter', sans-serif; background-color: #f7fafc; font-size: 16px; }
+        a { color: #374151; text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: #1f2937; }
+        .text-gray-600 a, a.text-gray-600 { color: #4b5563; }
+        .text-gray-600 a:hover, a.text-gray-600:hover { color: #1f2937; }
+        .gradient-text { background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-button { background-image: linear-gradient(to right, #9a9ae1, #69bff8); box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75); transition: all 0.3s ease-in-out; }
+        .gradient-button:hover { transform: scale(1.05); box-shadow: 0 6px 20px 0 rgba(116, 79, 168, 0.9); }
+        .loader { border-top-color: #69bff8; -webkit-animation: spinner 1.5s linear infinite; animation: spinner 1.5s linear infinite; }
+        @-webkit-keyframes spinner { 0% { -webkit-transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); } }
+        @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .form-input { border: 2px solid #94a3b8; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+        .form-input:focus { outline: none; border-color: #e2e8f0; box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.7); }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+<div class="min-h-screen flex flex-col" id="app">
+    <header class="bg-white shadow-lg p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a class="text-3xl font-extrabold gradient-text" href="index.html">A1UtilityHub</a>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6 font-medium">
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="index.html">Home</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="about.html">About</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="contact.html">Contact</a></li>
+                    <li><a class="text-gray-600 hover:text-purple-600 transition duration-300" href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+            <button id="mobile-menu-button" aria-label="Open navigation menu" aria-expanded="false" class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-200 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            </button>
+        </div>
+        <div class="hidden md:hidden bg-white mt-2 rounded-xl shadow-lg" id="mobile-menu">
+            <ul class="flex flex-col space-y-2 p-4 text-center">
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="index.html">Home</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="about.html">About</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="contact.html">Contact</a></li>
+                <li><a class="block py-2 text-gray-600 hover:bg-gray-50 rounded-md transition duration-300" href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="flex-grow container mx-auto p-4 md:p-8">
+        <div class="page-content">
+            <a class="text-gray-500 hover:text-gray-900 flex items-center mb-6 transition duration-300" href="index.html">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                Back to All Tools
+            </a>
+            <h1 class="text-4xl font-bold mb-6 gradient-text">Instagram Bio/Username Generator</h1>
+            <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                <form class="space-y-6" id="instagram-form">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="instagram-keywords">Keywords (e.g., 'travel, photography')</label>
+                        <input class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="instagram-keywords" type="text"/>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="instagram-type">Type</label>
+                        <select class="mt-1 block w-full rounded-lg shadow-sm focus:ring form-input p-3" id="instagram-type">
+                            <option value="bio">Bio</option>
+                            <option value="username">Username</option>
+                        </select>
+                    </div>
+                    <button class="w-full px-6 py-3 text-lg text-white font-bold rounded-lg gradient-button" type="submit">Generate ✨</button>
+                </form>
+                <div class="hidden mt-6 text-center" id="instagram-loading">
+                    <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
+                    <p class="text-gray-500 font-medium">Generating...</p>
+                </div>
+                <div class="mt-6 p-6 bg-gray-50 rounded-lg relative hidden border border-gray-200" id="instagram-result">
+                    <pre class="whitespace-pre-wrap text-sm" id="instagram-output"></pre>
+                    <button class="copy-button absolute top-4 right-4 p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition duration-300">
+                        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-xl p-8 mt-8">
+                <div class="prose max-w-none text-gray-700 space-y-4">
+                    <h3 class="text-2xl font-semibold">Introduction</h3>
+                    <p>Instagram is one of the most popular social platforms in the world, and your profile is often the first impression you leave on others. Whether you’re an influencer, small business owner, student, or just someone who loves sharing life updates, your bio and username matter more than you think. They act like your digital identity — your chance to stand out, express your vibe, and connect with people instantly.</p>
+                    <p>This free Instagram Bio and Username Generator is designed to help you craft catchy, creative, and meaningful identity options in seconds. Instead of staring at a blank screen, you can instantly get fresh ideas tailored to your keywords or niche.</p>
+                    
+                    <h3 class="text-2xl font-semibold">Why Your Instagram Bio Matters</h3>
+                    <p>Your bio is more than just a short description. In less than 150 characters, you need to tell the world who you are and why they should follow you. A good bio can:</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Showcase your personality or brand voice.</li>
+                        <li>Highlight your niche (travel, fitness, fashion, business, etc.).</li>
+                        <li>Invite engagement by adding humor, inspiration, or curiosity.</li>
+                        <li>Guide people toward actions like visiting your website or DMing you.</li>
+                    </ul>
+                    <p>With millions of users competing for attention, having a powerful bio is no longer optional — it’s essential.</p>
+
+                    <h3 class="text-2xl font-semibold">Why Usernames Are Equally Important</h3>
+                    <p>Your Instagram username is your handle — it’s how people find and tag you. A strong username should be easy to remember, relevant to your niche, and unique. Many users get stuck because all the good names seem taken. That’s where this tool saves time by generating multiple options you may not have thought of.</p>
+
+                    <h3 class="text-2xl font-semibold">How This Generator Works</h3>
+                    <p>Using AI technology, the tool takes your keywords and instantly produces creative bios or usernames. Here’s the simple process:</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Enter a keyword related to your niche (e.g., “fitness,” “travel,” “photography”).</li>
+                        <li>Choose whether you want bios or usernames.</li>
+                        <li>Click generate and receive multiple options within seconds.</li>
+                        <li>Copy your favorite and paste it into your Instagram profile.</li>
+                    </ul>
+                    <p>No more endless brainstorming — the ideas come to you quickly and creatively.</p>
+
+                    <h3 class="text-2xl font-semibold">Examples of Instagram Bios</h3>
+                    <p>Here are some sample outputs to spark inspiration:</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>✨ “Chasing sunsets and coffee dreams ☕🌅”</li>
+                        <li>✨ “Helping you stay fit one post at a time 💪”</li>
+                        <li>✨ “Travel addict | Storyteller | Memory collector 🌍📸”</li>
+                        <li>✨ “Turning ideas into reality, one project at a time 🚀”</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-semibold">Examples of Instagram Usernames</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>✨ @FitJourneyDaily</li>
+                        <li>✨ @NomadTales_</li>
+                        <li>✨ @SnapAndSmile</li>
+                        <li>✨ @IdeasInAction</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-semibold">Tips for Choosing the Best Option</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Keep it short and easy to spell.</li>
+                        <li>Avoid too many numbers or underscores.</li>
+                        <li>Make it relevant to your niche or vibe.</li>
+                        <li>Check availability before finalizing.</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-semibold">Limitations of the Tool</h3>
+                    <p>While this generator provides fresh and creative options, usernames are not automatically checked for availability. It’s always good to test them directly on Instagram. Similarly, bios are suggestions — you can customize them further to match your unique style.</p>
+
+                    <h3 class="text-2xl font-semibold">Who Can Benefit from This Tool?</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Influencers:</strong> Stand out with memorable names and bios.</li>
+                        <li><strong>Brands:</strong> Create a strong and recognizable digital identity.</li>
+                        <li><strong>Students & Creators:</strong> Add personality and professionalism to your profile.</li>
+                        <li><strong>Casual Users:</strong> Refresh your profile just for fun.</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-semibold">Mini FAQ</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Will these usernames be available?</strong> They are unique suggestions, but you should still check availability on Instagram.</li>
+                        <li><strong>Do I need to pay to use this tool?</strong> No, it’s completely free.</li>
+                        <li><strong>Can I customize the bios further?</strong> Absolutely — these are starting points to spark creativity.</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-semibold">Conclusion</h3>
+                    <p>Your Instagram bio and username are your online handshake. They define your brand, attract the right audience, and help you make lasting impressions. With this free generator, you no longer need to waste hours brainstorming. Just enter your keywords, choose your type, and explore instant suggestions. Whether you want something professional, funny, aesthetic, or creative — this tool has you covered.</p>
+                    <p>Start experimenting today and see how a small change in your bio or username can lead to big improvements in your Instagram presence!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white shadow-inner p-4 mt-8">
+        <div class="container mx-auto text-center text-gray-500 font-medium">
+            © 2024 A1UtilityHub. All rights reserved. | <a class="hover:underline text-gray-600" href="privacy-policy.html">Privacy Policy</a> | <a class="hover:underline text-gray-600" href="terms-and-conditions.html">Terms & Conditions</a>
+        </div>
+    </footer>
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8552348654911268" crossorigin="anonymous"></script>
+<script defer src="assets/js/site.min.js"></script>
+<script defer src="assets/js/bonus.js"
+            data-verify-url="https://secretshorebot-341306804018.asia-south1.run.app/verify_bonus"
+            data-secret="0921powqlksamnxz"
+            data-bot="SecretShoreBot"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8552348654911268"
+     data-ad-slot="1234567890"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+</html>
 <script defer src="assets/js/bonus.js"
           data-verify-url="https://secretshorebot-341306804018.asia-south1.run.app/verify_bonus"
           data-secret="0921powqlksamnxz"
