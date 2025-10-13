@@ -1,78 +1,87 @@
 (function () {
   try {
     const script = document.currentScript;
-    const VERIFY_URL = (script && script.dataset.verifyUrl) || 'https://secretshorebot-341306804018.asia-south1.run.app/verify/verify_bonus';
-    const SECRET = (script && script.dataset.secret) || '0921powqlksamnxz';
-    const BOT_USERNAME = (script && script.dataset.bot) || 'SecretShoreBot';
+    const VERIFY_URL =
+      (script && script.dataset.verifyUrl) ||
+      'https://secretshorebot-341306804018.asia-south1.run.app/verify/verify_bonus';
+    const SECRET =
+      (script && script.dataset.secret) || '0921powqlksamnxz';
+    const BOT_USERNAME =
+      (script && script.dataset.bot) || 'SecretShoreBot';
 
     const params = new URLSearchParams(window.location.search);
     const uid = params.get('uid');
     const sid = params.get('sid');
     if (!uid || !sid) return;
 
-    // Create floating hidden button
+    // --- create floating claim button ---
     const btn = document.createElement('button');
-    btn.innerText = '🎁 Claim Bonus';
     btn.id = 'claimBtn';
+    btn.innerText = '🎁 Claim Bonus';
     btn.type = 'button';
-    btn.style.position = 'fixed';
-    btn.style.bottom = '20px';
-    btn.style.right = '20px';
-    btn.style.display = 'none';
-    btn.style.padding = '10px 18px';
-    btn.style.border = 'none';
-    btn.style.borderRadius = '8px';
-    btn.style.background = '#22c55e';
-    btn.style.color = '#fff';
-    btn.style.fontSize = '16px';
-    btn.style.boxShadow = '0 6px 16px rgba(0,0,0,0.15)';
-    btn.style.zIndex = '9999';
-    btn.style.cursor = 'pointer';
-    btn.setAttribute('aria-live', 'polite');
-    btn.setAttribute('aria-label', 'Claim Bonus');
+    Object.assign(btn.style, {
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      display: 'none',
+      padding: '12px 20px',
+      border: 'none',
+      borderRadius: '10px',
+      background: '#22c55e',
+      color: '#fff',
+      fontSize: '16px',
+      fontWeight: '600',
+      boxShadow: '0 6px 16px rgba(0,0,0,0.15)',
+      zIndex: '9999',
+      cursor: 'pointer',
+      transition: 'background 0.3s ease'
+    });
+
+    btn.onmouseover = () => (btn.style.background = '#16a34a');
+    btn.onmouseout = () => (btn.style.background = '#22c55e');
 
     document.addEventListener('DOMContentLoaded', () => {
       document.body.appendChild(btn);
     });
 
-    let fullScrolled = false, waited = false, shown = false;
+    // --- display logic ---
+    let scrolled = false,
+      waited = false,
+      shown = false;
 
-    function pageBottomReached() {
+    function atBottom() {
       const doc = document.documentElement;
-      const scrollY = (window.scrollY || window.pageYOffset || doc.scrollTop);
-      const viewH = window.innerHeight || doc.clientHeight;
-      const scrollH = Math.max(
-        doc.scrollHeight,
-        doc.offsetHeight,
-        doc.clientHeight
+      return (
+        (window.scrollY || doc.scrollTop) + window.innerHeight >=
+        doc.scrollHeight - 10
       );
-      return scrollY + viewH >= scrollH - 10;
     }
 
-    function checkReady() {
-      if (!shown && fullScrolled && waited) {
+    function checkShow() {
+      if (!shown && scrolled && waited) {
         btn.style.display = 'block';
         shown = true;
       }
     }
 
-    const onScroll = () => {
-      if (pageBottomReached()) {
-        fullScrolled = true;
-        checkReady();
-        window.removeEventListener('scroll', onScroll, { passive: true });
+    function onScroll() {
+      if (atBottom()) {
+        scrolled = true;
+        checkShow();
+        window.removeEventListener('scroll', onScroll);
       }
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    // In case content is short or user lands at bottom
-    if (pageBottomReached()) {
-      fullScrolled = true;
     }
 
-    // Wait 20 seconds
-    setTimeout(() => { waited = true; checkReady(); }, 20000);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    if (atBottom()) scrolled = true;
 
+    // Wait 20s before showing button
+    setTimeout(() => {
+      waited = true;
+      checkShow();
+    }, 20000);
+
+    // --- button click event ---
     btn.addEventListener('click', async () => {
       btn.innerText = '⏳ Verifying...';
       btn.disabled = true;
@@ -90,15 +99,16 @@
 
         btn.innerText = '✅ Bonus Claimed! Redirecting...';
         setTimeout(() => {
-          window.location.href = `https://t.me/${BOT_USERNAME}`;
+          // Safer redirect for Telegram in-app browser
+          window.open(`https://t.me/${BOT_USERNAME}`, '_blank');
         }, 2000);
-      } catch (e) {
-        console.error(e);
+      } catch (err) {
+        console.error('Bonus verification error:', err);
         btn.innerText = '⚠️ Try Again';
         btn.disabled = false;
       }
     });
   } catch (err) {
-    console.error('bonus.js initialization error:', err);
+    console.error('bonus.js init error:', err);
   }
 })();
