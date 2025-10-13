@@ -14,7 +14,6 @@
     const sid = params.get('sid');
     if (!uid || !sid) return;
 
-    // --- create floating claim button ---
     const btn = document.createElement('button');
     btn.id = 'claimBtn';
     btn.innerText = '🎁 Claim Bonus';
@@ -33,18 +32,13 @@
       fontWeight: '600',
       boxShadow: '0 6px 16px rgba(0,0,0,0.15)',
       zIndex: '9999',
-      cursor: 'pointer',
-      transition: 'background 0.3s ease'
+      cursor: 'pointer'
     });
-
-    btn.onmouseover = () => (btn.style.background = '#16a34a');
-    btn.onmouseout = () => (btn.style.background = '#22c55e');
 
     document.addEventListener('DOMContentLoaded', () => {
       document.body.appendChild(btn);
     });
 
-    // --- display logic ---
     let scrolled = false,
       waited = false,
       shown = false;
@@ -57,7 +51,7 @@
       );
     }
 
-    function checkShow() {
+    function showIfReady() {
       if (!shown && scrolled && waited) {
         btn.style.display = 'block';
         shown = true;
@@ -67,7 +61,7 @@
     function onScroll() {
       if (atBottom()) {
         scrolled = true;
-        checkShow();
+        showIfReady();
         window.removeEventListener('scroll', onScroll);
       }
     }
@@ -75,13 +69,11 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     if (atBottom()) scrolled = true;
 
-    // Wait 20s before showing button
     setTimeout(() => {
       waited = true;
-      checkShow();
+      showIfReady();
     }, 20000);
 
-    // --- button click event ---
     btn.addEventListener('click', async () => {
       btn.innerText = '⏳ Verifying...';
       btn.disabled = true;
@@ -98,9 +90,19 @@
         if (!res.ok) throw new Error('Verification failed');
 
         btn.innerText = '✅ Bonus Claimed! Redirecting...';
+
         setTimeout(() => {
-          // Safer redirect for Telegram in-app browser
-          window.open(`https://t.me/${BOT_USERNAME}`, '_blank');
+          try {
+            // ✅ Detect Telegram WebApp environment
+            if (window.Telegram && window.Telegram.WebApp) {
+              window.Telegram.WebApp.openTelegramLink(`https://t.me/${BOT_USERNAME}`);
+            } else {
+              // fallback if opened in normal browser
+              window.location.href = `https://t.me/${BOT_USERNAME}`;
+            }
+          } catch (e) {
+            window.location.href = `https://t.me/${BOT_USERNAME}`;
+          }
         }, 2000);
       } catch (err) {
         console.error('Bonus verification error:', err);
