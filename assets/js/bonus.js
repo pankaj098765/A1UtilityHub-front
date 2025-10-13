@@ -1,7 +1,7 @@
 (function () {
   try {
     const script = document.currentScript;
-    const VERIFY_URL = (script && script.dataset.verifyUrl) || 'https://secretshorebot-341306804018.asia-south1.run.app/verify_bonus';
+    const VERIFY_URL = (script && script.dataset.verifyUrl) || 'https://secretshorebot-341306804018.asia-south1.run.app/verify/verify_bonus';
     const SECRET = (script && script.dataset.secret) || '0921powqlksamnxz';
     const BOT_USERNAME = (script && script.dataset.bot) || 'SecretShoreBot';
 
