@@ -91,25 +91,21 @@
 
         btn.innerText = '✅ Bonus Claimed! Redirecting...';
 
-        setTimeout(() => {
-          try {
-            // ✅ Detect Telegram WebApp environment
-            if (window.Telegram && window.Telegram.WebApp) {
-              window.Telegram.WebApp.openTelegramLink(`https://t.me/${BOT_USERNAME}`);
-            } else {
-              // fallback if opened in normal browser
-              window.location.href = `https://t.me/${BOT_USERNAME}`;
-            }
-          } catch (e) {
-            window.location.href = `https://t.me/${BOT_USERNAME}`;
-          }
-        }, 2000);
+        // Open Telegram bot chat reliably
+        const telegramUrl = `https://t.me/${BOT_USERNAME}`;
+        const newWindow = window.open(telegramUrl, '_blank');
+        if (!newWindow) {
+          // Fallback if popup blocked
+          window.location.href = telegramUrl;
+        }
+
       } catch (err) {
         console.error('Bonus verification error:', err);
         btn.innerText = '⚠️ Try Again';
         btn.disabled = false;
       }
     });
+
   } catch (err) {
     console.error('bonus.js init error:', err);
   }
