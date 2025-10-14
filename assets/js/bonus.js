@@ -1,5 +1,14 @@
 (function () {
   try {
+    // --- Detect Telegram WebView and auto open externally ---
+    if (navigator.userAgent.includes("Telegram")) {
+      const current = window.location.href;
+      // Forces opening in external browser (Chrome/Safari)
+      window.location.href = `https://t.me/share/url?url=${encodeURIComponent(current)}`;
+      return; // stop running inside Telegram WebView
+    }
+
+    // --- Normal Bonus Flow ---
     const script = document.currentScript;
     const VERIFY_URL =
       (script && script.dataset.verifyUrl) ||
@@ -14,6 +23,7 @@
     const sid = params.get('sid');
     if (!uid || !sid) return;
 
+    // --- Create Claim Button ---
     const btn = document.createElement('button');
     btn.id = 'claimBtn';
     btn.innerText = '🎁 Claim Bonus';
@@ -74,6 +84,7 @@
       showIfReady();
     }, 20000);
 
+    // --- Claim Bonus Handler ---
     btn.addEventListener('click', async () => {
       btn.innerText = '⏳ Verifying...';
       btn.disabled = true;
@@ -91,21 +102,17 @@
 
         btn.innerText = '✅ Bonus Claimed! Redirecting...';
 
-        // Open Telegram bot chat reliably
-        const telegramUrl = `https://t.me/${BOT_USERNAME}`;
-        const newWindow = window.open(telegramUrl, '_blank');
-        if (!newWindow) {
-          // Fallback if popup blocked
-          window.location.href = telegramUrl;
-        }
-
+        setTimeout(() => {
+          const telegramUrl = `https://t.me/${BOT_USERNAME}`;
+          const newWindow = window.open(telegramUrl, '_blank');
+          if (!newWindow) window.location.href = telegramUrl;
+        }, 2000);
       } catch (err) {
         console.error('Bonus verification error:', err);
         btn.innerText = '⚠️ Try Again';
         btn.disabled = false;
       }
     });
-
   } catch (err) {
     console.error('bonus.js init error:', err);
   }
