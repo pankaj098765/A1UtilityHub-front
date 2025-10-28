@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>A1UtilityHub-front Blog</title>
+    <link>https://yourdomain.com/</link>
+    <description>Latest posts</description>
+
+    <item>
+      <title>Style & Identity: How Gen Z and Millennials in the US Use Fashion to Tell Their Stories</title>
+      <link>https://yourdomain.com/blog/lifestyle-fashion-personal-identity-genz-millennials-us</link>
+      <guid isPermaLink="true">https://yourdomain.com/blog/lifestyle-fashion-personal-identity-genz-millennials-us</guid>
+      <pubDate>Tue, 28 Oct 2025 00:00:00 +0000</pubDate>
+      <description>Explore how Gen Z and Millennials in the US express identity through fashion, social media hashtags, streetwear trends, and college style.</description>
+    </item>
+
+  </channel>
+</rss>
